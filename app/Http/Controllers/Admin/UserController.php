@@ -24,9 +24,13 @@ class UserController extends Controller
     {
         $data = array();
         $data['email'] = $request -> user_email;
-        $data['password'] = $request -> userg_password;
+        $data['password'] = $request -> user_password;
         $data['role'] = $request -> user_role;
         $data['remember_token'] = $request -> user_token;
+        $data['name'] = $request -> user_name;
+        $data['phone'] = $request -> user_phone;
+        $data['address'] = $request -> user_address;
+        $data['image'] = $request -> user_image;
         DB::table('users')->insert($data);
         Session::put('message', 'Thêm thành công');
         return Redirect::to('add-user');
@@ -46,7 +50,9 @@ class UserController extends Controller
         // $data['password'] = $request -> users_password;
         $data['role'] = $request -> user_role;
         // $data['remember_token'] = $request -> user_token;
-
+        $data['name'] = $request -> user_name;
+        $data['phone'] = $request -> user_phone;
+        $data['address'] = $request -> user_address;
         DB::table('users')->where('userid', $user_id)->update($data);
         Session::put('message', 'Cập nhật thành công');
         return Redirect::to('all-user');

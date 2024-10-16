@@ -62,56 +62,7 @@
 									<i class="icon-phone"></i> 012 345 6789
 								</a>
 							</li>
-							{{-- <li class="dropdown d-none d-sm-block">
-								<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true">
-									<i class="icon-bell"></i>
-									<span class="count-label"></span>
-								</a>
-								<div class="dropdown-menu lrg" aria-labelledby="notifications">
-									<div class="dropdown-menu-header">
-										<h5>a</h5>
-										<p class="m-0 sub-title">You have 5 unread notifications</p>
-									</div>
-									<ul class="header-notifications">
-										<li>
-											<a href="#" class="clearfix">
-												<div class="avatar">
-													<img src="{{asset('assets')}}/img/user24.png" alt="Medical Admin Dashboards" />
-													<span class="notify-iocn icon-drafts text-danger"></span>
-												</div>
-												<div class="details">
-													<h6>Dr. Clive</h6>
-													<p>Appointed as a new President 2021-2024</p>
-												</div>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="clearfix">
-												<div class="avatar">
-													<img src="{{asset('assets')}}/img/user21.png" alt="Medical Admin Dashboards" />
-													<span class="notify-iocn icon-layers text-info"></span>
-												</div>
-												<div class="details">
-													<h6>Dr. G. Levsmia</h6>
-													<p>Will be on leave on October 2nd week.</p>
-												</div>
-											</a>
-										</li>
-										<li>
-											<a href="#" class="clearfix">
-												<div class="avatar">
-													<img src="{{asset('assets')}}/img/user19.png" alt="Medical Admin Dashboards" />
-													<span class="notify-iocn icon-person_add text-success"></span>
-												</div>
-												<div class="details">
-													<h6>Dr. George S</h6>
-													<p>Sent new applointments list</p>
-												</div>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li> --}}
+							
 							<li class="dropdown">
 								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
 									{{-- <span class="user-name">{{ Auth::user()->email }}</span> --}}
@@ -181,35 +132,17 @@
 							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								<i class="icon-users nav-icon"></i>
-								Bãi xe
+								Phương tiện
 							</a>
-							<ul class="dropdown-menu" aria-labelledby="doctoRs">
+							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
 								<li>
-									<a class="dropdown-item" href="hospital-doctors-list.html">Doctors List</a>
+									<a class="dropdown-item" href="{{URL::to('/add-vehicle')}} ">Thêm mới</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="hospital-locations.html">Hospital Locations</a>
+									<a class="dropdown-item" href="{{URL::to('all-vehicle')}}">Danh sách</a>
 								</li>
-								<li>
-									<a class="dropdown-item" href="hospital-reviews.html">Hospital Reviews</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="blog.html">News and Events</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="hospital-trainings.html">Staff Trainings</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="hospital-doctors.html">Doctors</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="hospital-patients.html">Patients</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="hospital-add-doctor.html">Add Doctor</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="hospital-add-patient.html">Add Patient</a>
+								
+									{{-- <a class="dropdown-item" href="error2.html">505</a> --}}
 								</li>
 							</ul>
 						</li>
@@ -217,35 +150,17 @@
 							<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								<i class="icon-book-open nav-icon"></i>
-								khách hàng
+								Khách hàng
 							</a>
-							<ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
 								<li>
-									<a class="dropdown-item" href="calendar.html">Calendar</a>
+									<a class="dropdown-item" href="{{URL::to('/add-customer')}} ">Thêm mới</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="invoice.html">Invoice</a>
+									<a class="dropdown-item" href="{{URL::to('all-customer')}}">Danh sách</a>
 								</li>
-								<li>
-									<a class="dropdown-item" href="cards.html">Cards</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="search-results.html">Search Results</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="gallery.html">Gallery</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="icons.html">Icons</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="typography.html">Typography</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="account-settings.html">Account Settings</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="default-layout.html">Default Layout</a>
+								
+									{{-- <a class="dropdown-item" href="error2.html">505</a> --}}
 								</li>
 							</ul>
 						</li>
@@ -463,53 +378,7 @@
 								</li>
 							</ul>
 						</li>
-						{{-- <li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="graphsDropdown" role="button" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">
-								<i class="icon-pie-chart1 nav-icon"></i>
-								Graphs
-							</a>
-							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="graphsDropdown">
-								<li class="open-left">
-									<a class="dropdown-toggle sub-nav-link" href="#" id="apexDropdown" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Apex Graphs
-									</a>
-									<ul class="dropdown-menu" aria-labelledby="apexDropdown">
-										<li>
-											<a class="dropdown-item" href="area-graphs.html">Area Charts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="bar-graphs.html">Bar Charts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="column-graphs.html">Column Charts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="donut-graphs.html">Donut Charts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="line-graphs.html">Line Charts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="mixed-graphs.html">Mixed Charts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="pie-graphs.html">Pie Charts</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-item" href="morris-graphs.html">Morris Graphs</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="vector-maps.html">Vector Maps</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="google-maps.html">Google Maps</a>
-								</li>
-							</ul>
-						</li> --}}
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">

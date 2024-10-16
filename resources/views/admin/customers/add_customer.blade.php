@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="doctor-profile">
                         <div class="doctor-thumb">
-                            <img src="assets/img/user21.png" alt="UI Kits">
+                            <img src="assets/img/user25.png" alt="UI Kits">
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
         <div class="col-lg-6 col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Thêm mới người dùng</div>
+                    <div class="card-title">Thêm mới khách hàng</div>
                 </div>
                 <?php
                 $message = session()->get('message');
@@ -45,7 +45,7 @@
                         <input type="text" name="user_email" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Password</label>
+                        <label for="exampleInputEmail1">Mật khẩu</label>
                         <input type="text" name="user_password" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
@@ -53,16 +53,15 @@
                         <input type="text" name="user_address" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Phân quyền</label>
+                        <label for="exampleInputEmail1">Quyền khách hàng</label>
                         <input type="text" name="user_role" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Phân </label>
-                        <input type="text" name="user_image" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <label for="exampleInputEmail1">Ảnh</label>
+                        <input type="file" name="user_image" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <button type="submit" name="add_user" class="btn btn-info">Thêm người dùng</button>
 
-                    </form>
                 </div>
             </div>
         </div>

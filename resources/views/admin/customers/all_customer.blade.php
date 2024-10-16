@@ -2,7 +2,7 @@
 @section('admin_content')
 
 <div class="table-container">
-  <h5 class="table-title">Quản lý người dùng</h5>
+  <h5 class="table-title">Quản lý khách hàng</h5>
   <div class="table-responsive">
     <?php
       $message = session()->get('message');
@@ -20,24 +20,26 @@
               <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 150px;">STT</th>
                 <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 172.85px;">Tên</th>
                 <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 172.85px;">Số điện thoại</th>
-                <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 250.562px;">Email</th>
-                <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 252.85px;">Địa chỉ</th>
-                <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 99.1625px;">Phân quyền</th>
+                <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 170.562px;">Email</th>
+                <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 172.85px;">Địa chỉ</th>
+                <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 200.1625px;">Ảnh khách hàng</th>
                 <th class="sorting" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 170.925px;">Sửa xóa</th>
                 </tr>
           </thead>
           <tbody>
-            @foreach($all_user as $key => $pro)
+            @foreach($all_customer as $key => $pro)
             <tr>
               <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
               <td>{{ $pro->name }}</td>
               <td>{{ $pro->phone}}</td>
               <td>{{ $pro->email }}</td>
               <td>{{ $pro->address}}</td>
-              <td>{{ $pro->role}}</td>                    
+            <td><img src="public/customer/{{$pro->image}}" height="100" width="100"></td>
+
+              
               <td>            
-                    <button type="button" class="btn btn-primary"><a href="{{URL::to('/edit-user/'.$pro->userid)}}"> Sửa </a></button>
-                  <button  type="button" class="btn btn-danger"> <a href="{{URL::to('/delete-user/'.$pro->userid)}}"> Xóa </button>
+                  <button type="button" class="btn btn-primary"><a href="{{URL::to('/edit-customer/'.$pro->userid)}}"> Sửa </a></button>
+                  <button  type="button" class="btn btn-danger"> <a href="{{URL::to('/delete-customer/'.$pro->userid)}}"> Xóa </button>
               </td>
                   </tr>
                   @endforeach         

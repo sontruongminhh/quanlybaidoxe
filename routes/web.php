@@ -13,12 +13,14 @@ use App\Http\Controllers\Admin\MedicineController;
 use App\Http\Controllers\DashboardController as ControllersDashboardController;
 
 //admin
-use App\Http\Controllers\Admin\PatientController;
-use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\VehicleControllerControllerController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\RecordsController;
+use App\Http\Controllers\Admin\VehicleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,7 +77,22 @@ Route::post('reset', [Authcontroller::class, 'reset_post'])->name('reset_post');
         Route::get('/delete-user/{UserID}', [UserController::class, 'delete_user']);
         Route::get('/edit-user/{user_id}', 'App\Http\Controllers\Admin\UserController@edit_user');
         Route::post('/update-user/{user_id}', 'App\Http\Controllers\Admin\UserController@update_user')->name('update_user');
-        
+    //khachdang
+        Route::get('/add-customer', [CustomerController::class, 'add_customer']);
+        Route::post('/save-customer', [CustomerController::class, 'save_customer']);
+        Route::get('/all-customer', [CustomerController::class, 'all_customer']);
+        Route::get('/delete-customer/{customerID}', [CustomerController::class, 'delete_customer']);
+        Route::get('/edit-customer/{customer_id}', 'App\Http\Controllers\Admin\CustomerController@edit_customer');
+        Route::post('/update-customer/{customer_id}', 'App\Http\Controllers\Admin\CustomerController@update_customer')->name('update_customer');
+    //ql xe
+        Route::get('/add-vehicle', [VehicleController::class, 'add_vehicle']);
+        Route::post('/save-vehicle', [VehicleController::class, 'save_vehicle']);
+        Route::get('/all-vehicle', [VehicleController::class, 'all_vehicle']);
+        Route::get('/delete-vehicle/{vehicleID}', [VehicleController::class, 'delete_vehicle']);
+        Route::get('/edit-vehicle/{vehicle_id}', 'App\Http\Controllers\Admin\VehicleController@edit_vehicle');
+        Route::post('/update-vehicle/{vehicle_id}', 'App\Http\Controllers\Admin\VehicleController@update_vehicle')->name('update_vehicle');
+
+
 //     });
 
 // });
