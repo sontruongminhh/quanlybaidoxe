@@ -14,12 +14,12 @@ use App\Http\Controllers\DashboardController as ControllersDashboardController;
 
 //admin
 use App\Http\Controllers\Admin\CustomerController;
-use App\Http\Controllers\Admin\VehicleControllerControllerController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CommentController;
-use App\Http\Controllers\Admin\AppointmentController;
-use App\Http\Controllers\Admin\RecordsController;
+use App\Http\Controllers\Admin\LogsController;
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\VehicleController;
+use Illuminate\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,14 @@ use App\Http\Controllers\Admin\VehicleController;
 Route::get('/', function () {
     return view('welcome');
 });
+//trang chu
+Route::get('/',[HomeController::class, 'index'])->name('home');
+Route::prefix('home')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+     
+});
+Route::get('contact', [HomeController::class,'contact']);
+
 //login
 // Route::group(['prefix' => 'auth'], function (){
 Route::get('register', [AuthController::class, 'register']);
@@ -55,7 +63,8 @@ Route::post('forget', [Authcontroller::class, 'forget_post'])->name('forget_post
 // mật khâủ mới     
 Route::get('reset', [Authcontroller::class, 'reset']);
 Route::post('reset', [Authcontroller::class, 'reset_post'])->name('reset_post');
-
+//kiểm tra email có tồn tại chưa
+Route::post('/check-email', [AuthController::class, 'checkEmail']);
 
 
 // });
@@ -91,8 +100,22 @@ Route::post('reset', [Authcontroller::class, 'reset_post'])->name('reset_post');
         Route::get('/delete-vehicle/{vehicleID}', [VehicleController::class, 'delete_vehicle']);
         Route::get('/edit-vehicle/{vehicle_id}', 'App\Http\Controllers\Admin\VehicleController@edit_vehicle');
         Route::post('/update-vehicle/{vehicle_id}', 'App\Http\Controllers\Admin\VehicleController@update_vehicle')->name('update_vehicle');
-
-
+    //ql đặt chỗ
+        Route::get('/add-reservation', [ReservationController::class, 'add_reservation']);
+        Route::post('/save-reservation', [ReservationController::class, 'save_reservation']);
+        Route::get('/all-reservation', [ReservationController::class, 'all_reservation']);
+        Route::get('/delete-reservation/{reservationID}', [ReservationController::class, 'delete_reservation']);
+        Route::get('/edit-reservation/{reservation_id}', 'App\Http\Controllers\Admin\ReservationController@edit_reservation');
+        Route::post('/update-reservation/{reservation_id}', 'App\Http\Controllers\Admin\ReservationController@update_reservation')->name('update_reservation');
+        Route::post('/update-status/{id}', [ReservationController::class, 'updateStatus']);
+    //ql lịch sử của xe
+        Route::get('/add-log', [LogsController::class, 'add_log']);
+        Route::post('/save-log', [LogsController::class, 'save_log']);
+        Route::get('/all-log', [LogsController::class, 'all_log']);
+        Route::get('/delete-log/{logID}', [LogsController::class, 'delete_log']);
+        Route::get('/edit-log/{log_id}', 'App\Http\Controllers\Admin\LogsController@edit_log');
+        Route::post('/update-log/{log_id}', 'App\Http\Controllers\Admin\LogsController@update_log')->name('update_log');
+ 
 //     });
 
 // });

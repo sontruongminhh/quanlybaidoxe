@@ -79,7 +79,12 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Biển số </label>
                                 <input type="text" name="vehicle_license_plate" class="form-control" id="exampleInputEmail1" placeholder="">
+                                <!-- Hiển thị thông báo lỗi nếu biển số đã tồn tại -->
+                                @error('vehicle_license_plate')
+                                    <div style="color:red">{{ $message }}</div>
+                                @enderror
                             </div>
+                            
                             <label for="exampleInputEmail1">Loại xe</label>
                             <input type="text" name="vehicle_vehicle_type" class="form-control" id="exampleInputEmail1" placeholder="">
                         </div>

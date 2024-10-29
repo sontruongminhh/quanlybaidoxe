@@ -217,150 +217,19 @@
 								</li>
 							</ul>
 						</li>
+						
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="uiElementsDropdown" role="button" data-toggle="dropdown"
+							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
-								<i class="icon-image nav-icon"></i>
-								Đặt chỗ
+								<i class="icon-users nav-icon"></i>
+							     Đặt chỗ
 							</a>
-							<ul class="dropdown-menu" aria-labelledby="uiElementsDropdown">
+							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
 								<li>
-									<a class="dropdown-toggle sub-nav-link" href="#" id="buttonsDropdown" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Buttons
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="buttonsDropdown">
-										<li>
-											<a class="dropdown-item" href="buttons.html">Buttons</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="button-groups.html">Button Groups</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="dropdowns.html">Dropdowns</a>
-										</li>
-									</ul>
+									<a class="dropdown-item" href="{{URL::to('/add-reservation')}} ">Thêm mới</a>
 								</li>
 								<li>
-									<a class="dropdown-toggle sub-nav-link" href="#" id="navsDropdown" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Navbars
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navsDropdown">
-										<li>
-											<a class="dropdown-item" href="nav.html">Nav</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="navbars.html">Navbars</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="tabs.html">Tabs</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle sub-nav-link" href="#" id="componentsDropdown" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Components
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="componentsDropdown">
-										<li>
-											<a class="dropdown-item" href="breadcrumbs.html">Breadcrumbs</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="jumbotron.html">Jumbotron</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="labels-badges.html">Labels &amp; Badges</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="list-items.html">List Items</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="pagination.html">Paginations</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="progress.html">Progress Bars</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="pills.html">Pills</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="spinners.html">Spinners</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle sub-nav-link" href="#" id="gridDropdown" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Grid
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="gridDropdown">
-										<li>
-											<a class="dropdown-item" href="grid.html">Grid</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="grid-doc.html">Grid Doc</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle sub-nav-link" href="#" id="imagesDropdown" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Images
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="imagesDropdown">
-										<li>
-											<a class="dropdown-item" href="avatars.html">Avatars</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="media-objects.html">Media Objects</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="images.html">Thumbnails</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="text-avatars.html">Text Avatars</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle sub-nav-link" href="#" id="alertDropdown" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Notifications
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="alertDropdown">
-										<li>
-											<a class="dropdown-item" href="bootstrap-alerts.html">Default Alerts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="custom-alerts.html">Custom Alerts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="toasts.html">Toasts</a>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a class="dropdown-toggle sub-nav-link" href="#" id="bsJquery" role="button" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false">
-										Bootstrap jQuery
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="bsJquery">
-										<li>
-											<a class="dropdown-item" href="carousel.html">Carousels</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="modals.html">Modals</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="popovers-tooltips.html">Tooltips</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="accordion.html">Accordions</a>
-										</li>
-									</ul>
-								</li>
+									<a class="dropdown-item" href="{{URL::to('all-reservation')}}">Danh sách</a>
 							</ul>
 						</li>
 						<li class="nav-item dropdown">

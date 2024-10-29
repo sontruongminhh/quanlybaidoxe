@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="doctor-profile">
                         <div class="doctor-thumb">
-                            <img src="assets/img/user21.png" alt="UI Kits">
+                            <img src="assets/img/user25.png" alt="UI Kits">
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <input type="text" name="user_role" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Phân </label>
+                        <label for="exampleInputEmail1">anh </label>
                         <input type="text" name="user_image" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <button type="submit" name="add_user" class="btn btn-info">Thêm người dùng</button>

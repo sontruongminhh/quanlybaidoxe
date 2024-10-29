@@ -39,31 +39,44 @@ class VehicleController extends Controller
     }
 
     public function save_vehicle(Request $request) {
-        $data['ownerid'] = $request -> vehicle_ownerid;
-        $data['license_plate'] = $request -> vehicle_license_plate;
-        $data['vehicle_type'] = $request -> vehicle_vehicle_type;
-        $data['entry_time'] = $request -> vehicle_entry_time;
-        $data['exit_time'] = $request -> vehicle_exit_time;
-        $data['image'] = $request -> vehicle_image;
-        $data['parkingid'] = $request -> vehicle_parkingid;
-        $data['parking_slotid'] = $request -> vehicle_parking_slotid;   
+        // Kiểm tra biển số xe đã tồn tại trong cơ sở dữ liệu hay chưa
+        $existing_vehicle = DB::table('vehicles')
+            ->where('license_plate', $request->vehicle_license_plate)
+            ->first();
     
+        // Nếu biển số đã tồn tại, trả về thông báo lỗi
+        if ($existing_vehicle) {
+            return redirect()->back()->withErrors(['vehicle_license_plate' => 'Biển số này đã tồn tại.'])->withInput();
+        }
+    
+        // Thu thập dữ liệu từ form
+        $data['ownerid'] = $request->vehicle_ownerid;
+        $data['license_plate'] = $request->vehicle_license_plate;
+        $data['vehicle_type'] = $request->vehicle_vehicle_type;
+        $data['entry_time'] = $request->vehicle_entry_time;
+        $data['exit_time'] = $request->vehicle_exit_time;
+        $data['image'] = $request->vehicle_image;
+        $data['parkingid'] = $request->vehicle_parkingid;
+        $data['parking_slotid'] = $request->vehicle_parking_slotid;   
+    
+        // Xử lý ảnh nếu có
         $get_image = $request->file('vehicle_image');
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.', $get_name_image));
-            $new_image = $name_image.rand(0, 99). '.'. $get_image->getClientOriginalExtension();
+            $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('public/customer', $new_image);
             $data['image'] = $new_image;
-            DB::table('vehicles') -> insert($data);
-            Session::put('message', 'Thêm  thành công');
-            return Redirect::to('add-vehicle');
+        } else {
+            $data['image'] = '';
         }
-        $data['image'] = '';
-        DB::table('vehicles') -> insert($data);
-        Session::put('message', 'Thêm thành công');
+    
+        // Chèn dữ liệu vào bảng
+        DB::table('vehicles')->insert($data);
+        Session::put('message', 'Thêm phương tiện thành công.');
         return Redirect::to('add-vehicle');
     }
+    
     
 
     public function edit_vehicle($vehicle_id)
@@ -80,40 +93,6 @@ class VehicleController extends Controller
         ];
         return view('admin.vehicles.edit_vehicle', ['data' => $data]);
     }
-
-    // public function update_vehicle(Request $request, $vehicle_id)
-    // {
-    //     // Validate input data
-    //     $request->validate([
-    //         'vehicle_parkingid' => 'required',
-    //         'vehicle_parking_slotid' => 'required',
-    //         'vehicle_userid' => 'required',  // Ensure this field is required
-    //         'vehicle_license_plate' => 'required',
-    //         'vehicle_vehicle_type' => 'required',
-    //         // Add other necessary validations
-    //     ]);
-    
-    //     // Find the vehicle
-    //     $vehicle = Vehicle::find($vehicle_id);
-    //     if (!$vehicle) {
-    //         abort(404);
-    //     }
-    
-    //     // Update the vehicle record, including 'ownerid' from 'vehicle_userid'
-    //     $vehicle->update([
-    //         'parkingid' => $request->vehicle_parkingid,
-    //         'parking_slotid' => $request->vehicle_parking_slotid,
-    //         'ownerid' => $request->vehicle_userid, // Assign the ownerid here
-    //         'license_plate' => $request->vehicle_license_plate,
-    //         'vehicle_type' => $request->vehicle_vehicle_type,
-    //         'entry_time' => $request->vehicle_entry_time,
-    //         'exit_time' => $request->vehicle_exit_time,
-    //         'image' => $request->vehicle_image, // Handle file upload if necessary
-    //     ]);
-    
-    //     return redirect()->route('vehicles.index')->with('success', 'Vehicle updated successfully.');
-    // }
-    
 
 
 

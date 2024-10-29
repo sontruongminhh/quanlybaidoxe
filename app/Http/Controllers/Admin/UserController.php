@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
 class UserController extends Controller
 {
     public function add_user(){
@@ -63,17 +64,42 @@ class UserController extends Controller
         return Redirect::to('all-user');
     }
 
+    public function checkEmail(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+        ]);
 
+        // Kiểm tra xem email có tồn tại trong cơ sở dữ liệu hay không
+        $emailExists = User::where('email', $validated['email'])->exists();
 
-//     public function index(Request $request)
-// {
-//     // Lấy tham số trang từ request
-//     $currentPage = $request->input('page', 1);
-    
-//     // Lấy dữ liệu với phân trang
-//     $users = user::paginate(10);
-    
-//     // Truyền dữ liệu sang view
-//     return view('users.index', compact('users', 'currentPage'));
-// }
+        if ($emailExists) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email đã tồn tại trong cơ sở dữ liệu.'
+            ], 400);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Email chưa tồn tại trong cơ sở dữ liệu.'
+        ]);
+    }
+
+    // public function checkEmail(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'email' => 'required|email',
+    //     ]);
+
+    //     // Kiểm tra xem email có tồn tại trong cơ sở dữ liệu hay không
+    //     $emailExists = User::where('email', $validated['email'])->exists();
+
+    //     if ($emailExists) {
+    //         // Chuyển hướng lại trang trước và lưu thông báo vào session
+    //         return redirect()->back()->with('error', 'Email đã tồn tại trong cơ sở dữ liệu.');
+    //     }
+
+    //     return redirect()->back()->with('success', 'Email chưa tồn tại trong cơ sở dữ liệu.');
+    // }
 }
