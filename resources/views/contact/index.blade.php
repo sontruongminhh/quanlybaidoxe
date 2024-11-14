@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Lake Resort || Responsive BootStrap HTML 5 Template</title>
+    <title>Phản hồi khách hàng</title>
     <!-- reponsive meta-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap-->
@@ -34,9 +34,9 @@
     <section id="sidebarCollapse" class="side-menu">
       <button type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-expanded="false" aria-controls="sidebarCollapse" class="close-button"><i class="fa fa-times"></i></button>
       <div class="side-menu-widget about-widget"><a href="index.html" class="logo"><img src="acc/images/icon\lr-home.png" alt="Awesome Image"></a>
-        <h3 class="title playball-font">Welcome to Resort</h3>
+        <h3 class="title playball-font">Chào mừng bạn</h3>
         <!-- /.title playball-font-->
-        <p>Edolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit.</p>
+        <p>Xin chào</p>
       </div>
       <!-- /.side-menu-widget-->
       <div class="side-menu-widget gallery-widget">
@@ -108,52 +108,32 @@
         </div>
         <div id="main-navigation" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Home <span class="glyphicon glyphicon-chevron-down"></span></a>
+            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Trang chủ <span class="glyphicon glyphicon-chevron-down"></span></a>
               <ul class="dropdown-submenu dropdown-menu">
-                <li><a href="index.html">Home Default</a></li>
-                <li><a href="index-2.html">Home 2</a></li>
-                <li><a href="index-3.html">Home 3</a></li>
-                <li><a href="index-4.html">Home 4</a></li>
-                <li><a href="index-5.html">Home 5</a></li>
+                <li><a href="index.html">Home </a></li>
               </ul>
             </li>
-            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">About Us <span class="glyphicon glyphicon-chevron-down"></span></a>
+            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"> Bài viết <span class="glyphicon glyphicon-chevron-down"></span></a>
               <ul class="dropdown-submenu dropdown-menu">
-                <li><a href="aboutus.html">Introduction</a></li>
-                <li><a href="activities.html">Our Activities</a></li>
-                <li><a href="aminities.html">Resort Aminities</a></li>
-                <li><a href="family-fun.html">Family Fun</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="tracing.html">Tracing</a></li>
+               
               </ul>
             </li>
-            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Suits & Rooms <span class="glyphicon glyphicon-chevron-down"></span></a>
+            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Thông tin <span class="glyphicon glyphicon-chevron-down"></span></a>
               <ul class="dropdown-submenu dropdown-menu">
-                <li><a href="room2.html">Room Grid</a></li>
-                <li><a href="room1.html">Room List</a></li>
-                <li><a href="suite-room.html">Room Stylish</a></li>
-                <li><a href="single-room.html">Single Room</a></li>
+                
               </ul>
             </li>
-            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Gallery <span class="glyphicon glyphicon-chevron-down"></span></a>
+           
+            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Bãi đỗ <span class="glyphicon glyphicon-chevron-down"></span></a>
               <ul class="dropdown-submenu dropdown-menu">
-                <li><a href="gallery1.html">Gallery Classic</a></li>
-                <li><a href="gallery2.html">Gallery Grid</a></li>
+              
+              
               </ul>
             </li>
-            <li><a href="our-restaurant.html">Dinning</a></li>
-            <li><a href="offers.html">offers</a></li>
-            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">News <span class="glyphicon glyphicon-chevron-down"></span></a>
+            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Liên hệ <span class="glyphicon glyphicon-chevron-down"></span></a>
               <ul class="dropdown-submenu dropdown-menu">
-                <li><a href="news-left.html">News Left Sidebar</a></li>
-                <li><a href="news-right.html">News Right Sidebar</a></li>
-                <li><a href="news-details.html">News Details</a></li>
-              </ul>
-            </li>
-            <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Contact us <span class="glyphicon glyphicon-chevron-down"></span></a>
-              <ul class="dropdown-submenu dropdown-menu">
-                <li><a href="contact.html">Contact us</a></li>
-                <li><a href="booking.html">Booking</a></li>
+                <li><a href="{{url('contact')}}">Gửi phản hồi</a></li>
+                <li><a href="{{url('booking')}}">Đặt lịch</a></li>
               </ul>
             </li>
           </ul>
@@ -185,14 +165,14 @@
     <!-- Header  Inner style-->
     <section class="row final-inner-header">
       <div class="container">
-        <h2 class="this-title">Contact us</h2>
+        <h2 class="this-title">Phản hồi</h2>
       </div>
     </section>
     <section class="row final-breadcrumb">
       <div class="container">
         <ol class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li class="active">Contact us</li>
+          <li class="active">Phản hồi</li>
         </ol>
       </div>
     </section>
@@ -200,37 +180,45 @@
     <!-- Booking style-->
     <section class="container clearfix common-pad booknow">
       <div class="sec-header">
-        <h2>Send a message</h2>
-        <h3>Pick a room that best suits your taste and budget</h3>
+        <h2>Gửi tin nhắn cho chúng tôi</h2>
+        <h3>Hãy phản hồi những gì bạn không hài lòng về chúng tôi</h3>
       </div>
       <div class="row nasir-contact">
         <div class="col-md-8">
           <div class="book-left-content input_form">
-            <form id="contactForm" action="contact_process.php" method="post">
+            {{-- **** --}}
+            <form id="contactForm" action="{{ route('contact.send') }}" method="POST">
+              @csrf <!-- Bảo vệ CSRF -->
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12"><span>Your Name</span>
-                  <input id="name" type="text" name="name" placeholder="Your name" class="form-control">
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12"><span>Your Email</span>
-                  <input id="email" type="email" name="email" placeholder="Your Email" class="form-control">
-                </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
+                      <span>Your Name</span>
+                      <input id="name" type="text" name="name" placeholder="Your name" class="form-control" required>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
+                      <span>Your Email</span>
+                      <input id="email" type="email" name="email" placeholder="Your Email" class="form-control" required>
+                  </div>
               </div>
               <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span>Subject</span>
-                  <input id="subject" type="text" name="subject" placeholder="Subject" class="form-control">
-                </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <span>Subject</span>
+                      <input id="subject" type="text" name="subject" placeholder="Subject" class="form-control" required>
+                  </div>
               </div>
               <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><span>Message</span>
-                  <textarea id="message" rows="6" name="message" placeholder="Message" class="form-control"></textarea>
-                </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <span>Message</span>
+                      <textarea id="message" rows="6" name="message" placeholder="Message" class="form-control" required></textarea>
+                  </div>
               </div>
               <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <button type="submit" value="submit now" class="res-btn">Submit Now</button>
-                </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <button type="submit" class="res-btn">Submit Now</button>
+                  </div>
               </div>
-            </form>
+          </form>
+          
+          
             <div id="success">
               <p>Your message sent successfully.</p>
             </div>

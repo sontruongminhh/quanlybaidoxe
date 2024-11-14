@@ -39,29 +39,47 @@ class ReservationController extends Controller
     }
 
     public function save_reservation(Request $request) {
-        // Kiểm tra biển số xe đã tồn tại trong cơ sở dữ liệu hay chưa
+        // Xác thực các yêu cầu đầu vào để đảm bảo dữ liệu không bị trống
+        $request->validate([
+            'reservation_parkingid' => 'required',
+            'reservation_parking_slotid' => 'required',
+            'reservation_customerid' => 'required',
+            'reservation_reservation_time' => 'required',
+            'reservation_start_time' => 'required',
+            'reservation_end_time' => 'required',
+            'reservation_status' => 'required|string'
+        ], [
+            'reservation_parkingid.required' => 'Bãi đỗ không được để trống.',
+            'reservation_parking_slotid.required' => 'Vị trí đỗ không được để trống.',
+            'reservation_customerid.required' => 'Khách hàng không được để trống.',
+            'reservation_reservation_time.required' => 'Thời gian đặt chỗ không được để trống.',
+            'reservation_start_time.required' => 'Thời gian bắt đầu đặt không được để trống.',
+            'reservation_end_time.required' => 'Thời gian kết thúc đặt không được để trống.',
+            'reservation_status.required' => 'Trạng thái không được để trống.'
+        ]);
+    
+        // Kiểm tra xem chỗ đỗ đã tồn tại trong cơ sở dữ liệu hay chưa
         $existing_reservation = DB::table('reservations')
-        ->where('parkingid', $request->reservation_parkingid)
-        ->where('parking_slotid', $request->reservation_parking_slotid)
-        ->first();
-    
-    if ($existing_reservation) {
-        return redirect()->back()->withErrors([
-            'duplicate_reservation' => 'Vị trí đỗ xe này đã được đặt, vui lòng chọn vị trí khác.'
-        ])->withInput();
-    }
-    
-    // Thêm các thao tác tiếp theo nếu không có trùng lặp
-    
+            ->where('parkingid', $request->reservation_parkingid)
+            ->where('parking_slotid', $request->reservation_parking_slotid)
+            ->first();
+        
+        if ($existing_reservation) {
+            return redirect()->back()->withErrors([
+                'duplicate_reservation' => 'Vị trí đỗ xe này đã được đặt, vui lòng chọn vị trí khác.'
+            ])->withInput();
+        }
     
         // Thu thập dữ liệu từ form
-        $data['customerid'] = $request->reservation_customerid;
-        $data['reservation_time'] = $request->reservation_reservation_time;      
-        $data['start_time'] = $request->reservation_start_time;
-        $data['end_time'] = $request->reservation_end_time;
-        $data['status'] = $request->reservation_status;
-        $data['parking_slotid'] = $request->reservation_parking_slotid;   
-        $data['parkingid'] = $request->reservation_parkingid;   
+        $data = [
+            'customerid' => $request->reservation_customerid,
+            'reservation_time' => $request->reservation_reservation_time,
+            'start_time' => $request->reservation_start_time,
+            'end_time' => $request->reservation_end_time,
+            'status' => $request->reservation_status,
+            'parking_slotid' => $request->reservation_parking_slotid,
+            'parkingid' => $request->reservation_parkingid
+        ];
     
         // Chèn dữ liệu vào bảng
         DB::table('reservations')->insert($data);

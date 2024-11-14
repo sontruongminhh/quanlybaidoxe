@@ -45,7 +45,7 @@ class CustomerController extends Controller
         $data['image'] = '';
         DB::table('users') -> insert($data);
         Session::put('message', 'Thêm thành công');
-        return Redirect::to('add-custpmer');
+        return Redirect::to('add-customer');
     }
     
     public function edit_customer($customer_id)

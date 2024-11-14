@@ -16,15 +16,16 @@ class IsAdmin
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        if (Auth::check()) {
-            if (Auth::user()->Admin == User::ROLE['ADMIN']) {
-                return $next($request);
-            } else {
-                abort(403, 'Bạn không có quyền truy cập!');
-            }
+{
+    if (Auth::check()) {
+        if (Auth::user()->role == User::ROLE['ADMIN']) {
+            return $next($request);
         } else {
-            return redirect('/login');
-        }
+            abort(403, 'Bạn không có quyền truy cập!');
+        }        
+    } else {
+        return redirect('/login');
     }
+}
+
 }

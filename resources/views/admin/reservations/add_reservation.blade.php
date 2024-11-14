@@ -79,19 +79,35 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Thời gian đặt chỗ</label>
                             <input type="time" name="reservation_reservation_time" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('reservation_reservation_time')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+                        
                         <div class="form-group">
                             <label for="exampleInputEmail1">Thời gian bắt đầu đặt</label>
                             <input type="time" name="reservation_start_time" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('reservation_start_time')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+                        
                         <div class="form-group">
                             <label for="exampleInputEmail1">Thời gian kết thúc đặt</label>
                             <input type="time" name="reservation_end_time" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('reservation_end_time')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+                        
                         <div class="form-group">
                             <label for="exampleInputEmail1">Trạng thái</label>
                             <input type="text" name="reservation_status" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('reservation_status')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+                        
                       
                         <button type="submit" name="add_reservation" class="btn btn-info">Thêm lịch mới</button>
                     </form>

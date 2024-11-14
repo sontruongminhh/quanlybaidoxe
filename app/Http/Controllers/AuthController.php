@@ -36,12 +36,20 @@ class AuthController
             'email' => $request->input('Email'),
             'password' => $request->input('Password'),
         ];
+    
         if (Auth::attempt($credentials)) {
-            return redirect()->route('admin');
+            $user = Auth::user(); // Lấy thông tin người dùng sau khi đăng nhập
+    
+            if ($user->role == 3) {
+                return redirect()->route('home'); // Điều hướng đến trang chủ nếu role là 3
+            } else {
+                return redirect()->route('admin'); // Điều hướng đến trang admin nếu role khác 3
+            }
         } else {
-            return redirect()->back()->withErrors(['error_login' =>'Tài khoản hoặc mật khẩu không chính xác']);
+            return redirect()->back()->withErrors(['error_login' => 'Tài khoản hoặc mật khẩu không chính xác']);
         }
     }
+    
 
     /**
      * Handle logout
@@ -100,11 +108,7 @@ class AuthController
             return redirect('register')->back()->with('success', 'Token lấy lại mật khẩu đã được gửi qua email.');
         } else {
             return redirect()->back()->withInput()->with('error', 'Email không hợp lệ.');
-        }
-
-
-
-       
+        }  
     }
     
 
