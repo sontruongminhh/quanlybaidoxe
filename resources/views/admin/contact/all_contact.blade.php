@@ -36,7 +36,10 @@
               <td>{{ $pro->subject}}</td>
               <td>{{ $pro->message}}</td>
               <td>{{ $pro->contact_time}}</td>
-              <td>{{ $pro->status}}</td>
+              <td style="font-weight: bold; color: #ff0000; background-color: #fce4e4; padding: 10px; border: 2px solid #ff0000; text-align: center;">
+                {{ $pro->status }}
+            </td>
+            
               <td>{{ $pro->response}}</td>
               <td>{{ $pro->response_time}}</td>
                          

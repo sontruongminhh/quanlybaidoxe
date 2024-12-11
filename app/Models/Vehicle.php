@@ -8,7 +8,7 @@ class Vehicle extends Model
 {
     protected $table = 'vehicles'; // Tên bảng
     protected $primaryKey = 'vehicleid'; // Khóa chính
-    public $timestamps = true; // Sử dụng 'create_at' và 'update_at'
+    public $timestamps = false; // Sử dụng 'create_at' và 'update_at'
 
     protected $fillable = [
         'ownerid',
@@ -16,10 +16,9 @@ class Vehicle extends Model
         'vehicle_type',
         'entry_time',
         'exit_time',
-        'parkingid',
+        'parkingid',    
         'parking_slotid',
-        'create_at',
-        'update_at'
+        'image',     
     ];
 
     // Quan hệ với model ParkingSlot
@@ -33,4 +32,5 @@ class Vehicle extends Model
     {
         return $this->belongsTo(ParkingLot::class, 'parkingid', 'parkingid');
     }
+    
 }

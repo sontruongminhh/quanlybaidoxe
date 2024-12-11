@@ -8,14 +8,14 @@ class Log extends Model
 {
     protected $table = 'logs'; // Tên bảng trong cơ sở dữ liệu
     protected $primaryKey = 'logid'; // Khóa chính của bảng
-    public $timestamps = true; // Laravel sẽ quản lý 'create_at' và 'update_at'
+    public $timestamps = false; // Laravel sẽ quản lý 'create_at' và 'update_at'
 
     protected $fillable = [
         'userid',
         'vehicleid',
         'action',
         'details',
-        'create_at'
+        // 'create_at'
     ];
 
     // Quan hệ với bảng users (người dùng thực hiện hành động)

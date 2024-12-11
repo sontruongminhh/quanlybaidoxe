@@ -8,7 +8,7 @@ class ParkingSlot extends Model
 {
     protected $table = 'parking_slots'; // Tên bảng
     protected $primaryKey = 'parking_slotid'; // Khóa chính
-    public $timestamps = true; // Sử dụng 'create_at' và 'update_at'
+    public $timestamps = false; // Sử dụng 'create_at' và 'update_at'
 
     protected $fillable = [
         'slot_number',
@@ -16,17 +16,17 @@ class ParkingSlot extends Model
         'vehicleid',
         'position_x',
         'position_y',
-        'create_at',
-        'update_at'
+        // 'create_at',
+        // 'update_at'
     ];
 
     // Quan hệ với model Vehicle
-    public function vehicle()
+    public function vehicles()
     {
         return $this->belongsTo(Vehicle::class, 'vehicleid', 'vehicleid');
     }
 
-    // Quan hệ với model ParkingLot
+    // Quan hệ với model ParkingLot (Many-to-One)
     public function parkingLot()
     {
         return $this->belongsTo(ParkingLot::class, 'parkingid', 'parkingid');

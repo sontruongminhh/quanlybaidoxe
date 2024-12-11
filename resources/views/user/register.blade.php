@@ -55,7 +55,7 @@
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+										<input type="password" name="ConfirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" />
 										<div style="color:red">{{ $errors->first('ConfirmPassword') }}</div>				
 									</div>
 								</div>

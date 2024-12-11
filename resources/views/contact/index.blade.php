@@ -78,24 +78,31 @@
       <div class="container">
         <div class="pull-left left-infos contact-infos">
           <ul class="list-inline">
-            <li><a href="#"><i class="fa fa-phone"></i> (+44) 555 890767</a></li>
+            <li><a href="#"><i class="fa fa-phone"></i>034691646</a></li>
             <!--comment for inline hack
             -->
-            <li><a href="#"><i class="fa fa-map-marker"></i> 56, Building- Avenue-96, New YOrk</a></li>
+            <li><a href="#"><i class="fa fa-map-marker"></i> Nguyễn Đức Đạt , phường Bến Thủy, thành phố Vinh</a></li>
             <!--comment for inline hack
             -->
-            <li><a href="#"><i class="fa fa-envelope"></i> info@saturnthemes.com</a></li>
+            <li><a href="#"><i class="fa fa-envelope"></i>Truongminhson@gmail.com</a></li>
           </ul>
         </div>
         <!-- /.pull-left left-infos-->
-        <div class="pull-right right-infos link-list">
-          <ul class="list-inline">
+        @if ($userEmail == null)
+    <div class="pull-right right-infos link-list">
+        <ul class="list-inline">
             <li><a href="#">Login</a></li>
-            <!--comment for inline hack
-            -->
             <li><a href="#">Registration</a></li>
-          </ul>
-        </div>
+        </ul>
+    </div>
+        @else
+    @if ($userRole == 'admin')
+        <p class="pull-right">Welcome, Admin!</p>
+    @else
+    <p class="pull-right" style="color: #ffffff; font-weight: bold; font-size: 1em;">Welcome, {{ $userEmail }}!</p>
+    @endif
+    @endif
+    
         <!-- /.pull-right right-infos link-list-->
       </div>
       <!-- /.container-->
@@ -110,7 +117,7 @@
           <ul class="nav navbar-nav">
             <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Trang chủ <span class="glyphicon glyphicon-chevron-down"></span></a>
               <ul class="dropdown-submenu dropdown-menu">
-                <li><a href="index.html">Home </a></li>
+                <li><a href="{{url('home')}}">Home </a></li>
               </ul>
             </li>
             <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"> Bài viết <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -176,6 +183,7 @@
         </ol>
       </div>
     </section>
+    
     <!-- Header  Slider style-->
     <!-- Booking style-->
     <section class="container clearfix common-pad booknow">
@@ -187,71 +195,75 @@
         <div class="col-md-8">
           <div class="book-left-content input_form">
             {{-- **** --}}
-            <form id="contactForm" action="{{ route('contact.send') }}" method="POST">
-              @csrf <!-- Bảo vệ CSRF -->
+            {{-- id="contactForm" --}}
+            <form  action="{{ route('contact.send') }}" method="POST">
+              @csrf
               <div class="row">
                   <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                      <span>Your Name</span>
-                      <input id="name" type="text" name="name" placeholder="Your name" class="form-control" required>
+                      <span>Tên của bạn</span>
+                      <input id="name" value="{{ $userName ?? '' }}" type="text" name="name" placeholder="Your name" class="form-control" required>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                      <span>Your Email</span>
-                      <input id="email" type="email" name="email" placeholder="Your Email" class="form-control" required>
+                      <span>Email của bạn</span>
+                      <input id="email" value="{{ $userEmail ?? '' }}" type="email" name="email" placeholder="Your Email" class="form-control" required>
                   </div>
               </div>
               <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <span>Subject</span>
+                      <span>Chủ đề</span>
                       <input id="subject" type="text" name="subject" placeholder="Subject" class="form-control" required>
                   </div>
               </div>
               <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <span>Message</span>
+                      <span>Chi tiết</span>
                       <textarea id="message" rows="6" name="message" placeholder="Message" class="form-control" required></textarea>
                   </div>
               </div>
+              <!-- Trường ẩn cho userid -->
+              <input type="hidden" name="userid" value="{{ $userid }}">
+              <input type="hidden" name="status" value="pending">
               <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <button type="submit" class="res-btn">Submit Now</button>
+                      <button type="submit" class="res-btn">Gửi phản hồi</button>
                   </div>
               </div>
-          </form>
+            </form> 
           
-          
-            <div id="success">
+                 
+            {{-- <div id="success">
               <p>Your message sent successfully.</p>
             </div>
             <div id="error">
               <p>Something is wrong. Message cant be sent!</p>
-            </div>
+            </div> --}}
           </div>
         </div>
         <div class="col-md-4">
           <div class="contact-info">
-            <h2>Contact Info</h2>
+            <h2>Gửi phản hồi</h2>
             <div class="media-contact clearfix">
               <div class="media-contact-icon"><i aria-hidden="true" class="fa fa-map-marker"></i></div>
               <div class="media-contact-info">
-                <p>Lake Resort, Lorance 542B, Tailstoi Town 5248 MT, Wordwide Country</p>
+                <p>Ngõ 8, Nguyễn Đức Đạt, phường Bến Thủy, thành phố Vinh</p>
               </div>
             </div>
             <div class="media-contact clearfix">
               <div class="media-contact-icon"><i aria-hidden="true" class="fa fa-envelope-o"></i></div>
               <div class="media-contact-info">
-                <p><a href="mailto:Info@Resorthotel.Com">Info@Resorthotel.Com</a><br><a href="mailto:support@Resorthotel.Com">support@Resorthotel.Com</a></p>
+                <p><a href="mailto:Info@Resorthotel.Com">Truongminhson@gmail.com</a><br><a href="mailto:support@Resorthotel.Com">son@gmail.com/a></p>
               </div>
             </div>
             <div class="media-contact clearfix">
               <div class="media-contact-icon"><i aria-hidden="true" class="fa fa-phone"></i></div>
               <div class="media-contact-info">
-                <p>Monday to Friday : 8.00am to 5.00 pm<br>                                  Saturday : 8.00am to 3.00 pm<br>                                  Sunday : <span>closed</span></p>
+                <p>Thứ 2 đến chủ nhật : 8.00am to 5.00 pm<br>                                 Mọi tháng : 8.00am to 3.00 pm<br>                                 Ngày lễ: <span>closed</span></p>
               </div>
             </div>
             <div class="media-contact clearfix">
               <div class="media-contact-icon"><i aria-hidden="true" class="icon icon-Timer"></i></div>
               <div class="media-contact-info">
-                <p><a href="tel:18005622487"><i>+ 1800 562 2487</i></a><br><a href="tel:32155468975"><i>+ 3215 546 8975</i></a></p>
+                <p><a href="tel:18005622487"><i>034646845</i></a><br><a href="tel:32155468975"><i>0346956466</i></a></p>
               </div>
             </div>
           </div>

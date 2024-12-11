@@ -32,34 +32,70 @@
                     
                     <form role="form" action="{{URL::to('/save-user')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                    <div class="form-group">
-                            <label for="exampleInputEmail1">Tên người dùng </label>
-                     <input type="text" name="user_name" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Số điện thoại </label>
-                        <input type="text" name="user_phone" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email người dùng </label>
-                        <input type="text" name="user_email" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Password</label>
-                        <input type="text" name="user_password" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Địa chỉ</label>
-                        <input type="text" name="user_address" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Phân quyền</label>
-                        <input type="text" name="user_role" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">anh </label>
-                        <input type="text" name="user_image" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên người dùng</label>
+                            <input type="text" name="user_name" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Số điện thoại</label>
+                            <input type="text" name="user_phone" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_phone')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email người dùng</label>
+                            <input type="text" name="user_email" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Password</label>
+                            <input type="text" name="user_password" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_password')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Địa chỉ</label>
+                            <input type="text" name="user_address" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_address')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phân quyền</label>
+                            <input type="text" name="user_role" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_role')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+{{--                         
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ảnh</label>
+                            <input type="text" name="user_image" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_image')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div> --}}
+                        
+                        {{-- <div class="form-group">
+                            <label for="exampleInputEmail1">Token</label>
+                            <input type="text" name="user_token" class="form-control" id="exampleInputEmail1" placeholder="">
+                            @error('user_token')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div> --}}
+                        
                     <button type="submit" name="add_user" class="btn btn-info">Thêm người dùng</button>
 
                     </form>

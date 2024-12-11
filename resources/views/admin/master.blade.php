@@ -123,8 +123,8 @@
 												<div class="header-user">
 													<img src="assets/img/user11.png" alt="Medical Dashboards" />
 												</div>
-												<h5>Nélson Romyo</h5>
-												<p>Admin</p>
+												<h5>{{ Auth::user()->name }}</h5>
+											
 											</div>
 											<a href="hospital-add-doctor.html"><i class="icon-user1"></i> My Profile</a>
 											<a href="account-settings.html"><i class="icon-settings1"></i> Account Settings</a>
@@ -244,6 +244,19 @@
 									<a class="dropdown-item" href="{{URL::to('all-reservation')}}">Danh sách</a>
 							</ul>
 						</li>
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								<i class="icon-users nav-icon"></i>
+							     Phản hồi
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
+								
+								<li>
+									<a class="dropdown-item" href="{{URL::to('all-contact')}}">Danh sách</a>
+							</ul>
+						</li>
 	                    @endif
 						
 						@if (Auth::user()->role == User::ROLE['ADMIN'])
@@ -306,9 +319,9 @@
 							     Đặt chỗ
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
-								<li>
+								{{-- <li>
 									<a class="dropdown-item" href="{{URL::to('/add-reservation')}} ">Thêm mới</a>
-								</li>
+								</li> --}}
 								<li>
 									<a class="dropdown-item" href="{{URL::to('all-reservation')}}">Danh sách</a>
 							</ul>

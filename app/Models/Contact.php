@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    protected $table = 'contacts';
+    protected $table = 'contact';
     protected $primaryKey = 'contactid';
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'userid',

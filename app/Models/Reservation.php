@@ -8,7 +8,7 @@ class Reservation extends Model
 {
     protected $table = 'reservations'; // Tên bảng trong cơ sở dữ liệu
     protected $primaryKey = 'reservationid'; // Khóa chính của bảng
-    public $timestamps = true; // Laravel sẽ quản lý 'create_at' và 'update_at'
+    public $timestamps = false; // Laravel sẽ quản lý 'create_at' và 'update_at'
 
     protected $fillable = [
         'customerid',

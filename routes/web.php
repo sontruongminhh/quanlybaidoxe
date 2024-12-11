@@ -2,13 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AccountController;
+
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\PrescriptionsController;
-use App\Http\Controllers\Admin\DetailsController;
-use App\Http\Controllers\Admin\MedicineController;
 use App\Http\Controllers\DashboardController as ControllersDashboardController;
 
 //admin
@@ -31,43 +28,47 @@ use Illuminate\Routing\Router;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+//login
+// Route::group(['prefix' => 'auth'], function (){
+  Route::get('register', [AuthController::class, 'register']);
+  Route::post('register', [AuthController::class, 'create_user']);
+  Route::get('login', [AuthController::class, 'login'])->name('login');
+  Route::post('login', [AuthController::class, 'login_post'])->name('login_post');
+  Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+  // Route::get('forget', [AuthController::class, 'forger']);
+  Route::get('profile', [Authcontroller::class, 'profile']);
+  Route::post('profile', [Authcontroller::class, 'profile_post'])->name('profile_post');
+  //thay đổi mật khẩu
+  Route::get('change_password', [Authcontroller::class, 'change_password']);
+  Route::post('change_password', [Authcontroller::class, 'change_post'])->name('change_post');
+  //lấy lại mật khẩu
+  Route::get('forget', [Authcontroller::class, 'forget']);
+  Route::post('forget', [Authcontroller::class, 'forget_post'])->name('forget_post');
+  // mật khâủ mới     
+  Route::get('reset', [Authcontroller::class, 'reset']);
+  Route::post('reset', [Authcontroller::class, 'reset_post'])->name('reset_post');
+  //kiểm tra email có tồn tại chưa
+  Route::post('/check-email', [AuthController::class, 'checkEmail']);
+  // });
+
+
 //trang chu
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('home')->group(function () {
   Route::get('/', [HomeController::class, 'index'])->name('home');
 });
 Route::get('contact', [HomeController::class, 'contact']);
+Route::get('contact', [HomeController::class, 'showContactForm'])->name('contact.form');
 Route::post('contact/send', [HomeController::class, 'sendContact'])->name('contact.send');
-//login
-// Route::group(['prefix' => 'auth'], function (){
-Route::get('register', [AuthController::class, 'register']);
-Route::post('register', [AuthController::class, 'create_user']);
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::post('login', [AuthController::class, 'login_post'])->name('login_post');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-// Route::get('forget', [AuthController::class, 'forger']);
-Route::get('profile', [Authcontroller::class, 'profile']);
-Route::post('profile', [Authcontroller::class, 'profile_post'])->name('profile_post');
-//thay đổi mật khẩu
-Route::get('change_password', [Authcontroller::class, 'change_password']);
-Route::post('change_password', [Authcontroller::class, 'change_post'])->name('change_post');
-
-//lấy lại mật khẩu
-Route::get('forget', [Authcontroller::class, 'forget']);
-Route::post('forget', [Authcontroller::class, 'forget_post'])->name('forget_post');
-// mật khâủ mới     
-Route::get('reset', [Authcontroller::class, 'reset']);
-Route::post('reset', [Authcontroller::class, 'reset_post'])->name('reset_post');
-//kiểm tra email có tồn tại chưa
-Route::post('/check-email', [AuthController::class, 'checkEmail']);
+Route::get('booking', [HomeController::class, 'booking']);
+Route::get('booking',[HomeController::class,'showBookingForm'])->name('booking.form');
+Route::post('booking/send', [HomeController::class, 'sendBooking'])->name('booking.send');
+Route::get('blog', [HomeController::class, 'blog']);
+Route::get('blogdetail/{id}', [HomeController::class, 'blogdetail'])->name('blogdetail');
+Route::post('blog/send-comment', [HomeController::class, 'sendCommentBlog'])->name('blog.comment.send');
 
 
-// });
-//trang chu
-
+// trang quản trị
 // đăng nhập admin
 Route::group(['middleware' => 'auth'], function () {
 
@@ -77,13 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 
   // vai trò admin
   Route::group(['middleware' => 'admin'], function () {
-    //ql phản hồi
-    Route::get('/add-contact', [ContactController::class, 'add_contact']);
-    Route::post('/save-contact', [ContactController::class, 'save_contact']);
-    Route::get('/all-contact', [ContactController::class, 'all_contact']);
-    Route::get('/delete-contact/{contactID}', [ContactController::class, 'delete_contact']);
-    Route::get('/edit-contact/{contact_id}', 'App\Http\Controllers\Admin\ContactController@edit_contact');
-    Route::post('/update-contact/{contact_id}', 'App\Http\Controllers\Admin\ContactController@update_contact')->name('update_contact');
+    
     //người dùng users
     Route::get('/add-user', [UserController::class, 'add_user']);
     Route::post('/save-user', [UserController::class, 'save_user']);
@@ -92,7 +87,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-user/{user_id}', 'App\Http\Controllers\Admin\UserController@edit_user');
     Route::post('/update-user/{user_id}', 'App\Http\Controllers\Admin\UserController@update_user')->name('update_user');
   });
-
+  //ql phản hồi
+  Route::get('/add-contact', [ContactController::class, 'add_contact']);
+  Route::post('/save-contact', [ContactController::class, 'save_contact']);
+  Route::get('/all-contact', [ContactController::class, 'all_contact']);
+  Route::get('/delete-contact/{contactID}', [ContactController::class, 'delete_contact']);
+  Route::get('/edit-contact/{contact_id}', 'App\Http\Controllers\Admin\ContactController@edit_contact');
+  Route::post('/update-contact/{contact_id}', 'App\Http\Controllers\Admin\ContactController@update_contact')->name('update_contact');
   //khachdang
   Route::get('/add-customer', [CustomerController::class, 'add_customer']);
   Route::post('/save-customer', [CustomerController::class, 'save_customer']);

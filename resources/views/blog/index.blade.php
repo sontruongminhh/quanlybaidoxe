@@ -186,7 +186,7 @@
             </ul>
         </div>
         <!-- /.pull-left left-infos-->
-        @if ($userEmail == null)
+        {{-- @if ($userEmail == null)
           <div class="pull-right right-infos link-list">
               <ul class="list-inline">
                   <li><a href="{{url('login')}}">Login</a></li>
@@ -199,8 +199,9 @@
           <p class="pull-right">Welcome, Admin!</p>
           @else
           <p class="pull-right">Welcome, {{ $userEmail }}!</p>
-          @endif  
-        @endif
+          @endif
+         
+        @endif --}}
         <!-- /.pull-right right-infos link-list-->
     </div>
     <!-- /.container-->
@@ -376,7 +377,7 @@
       </div>
       <!-- Swiper Container -->
       <div class="row g-4">
-        @foreach($welcome as $blog)
+        @foreach($index as $blog)
         <div class="col-xl-4 col-lg-6 col-md-6">
             <div class="card h-100 shadow-lg border-0">
                 <!-- Hình ảnh bài viết -->
@@ -408,95 +409,8 @@
     </section>
   
     
-    <!-- Counter style-->
-    <form method="GET" action="{{ route('home') }}" class="form-inline mb-4">
-      <div class="form-group">
-          <label for="date">Chọn ngày:</label>
-          <input type="date" id="date" name="date" value="{{ $date }}" class="form-control ml-2">
-      </div>
-      <button type="submit" class="btn btn-primary ml-2">Xem thống kê</button>
-  </form>
-  
-  <section class="resort-counert clearfix">
-      <div class="container">
-          <div class="row">
-              <h3 class="text-center">Thống kê ngày: {{ $date }}</h3>
-              @foreach ($parkingStats as $stat)
-                  <div class="col-md-3 col-sm-6">
-                      <div class="rest-fact-counter">
-                          <div class="text-box">
-                              <!-- Số lượng xe trong bãi ngày hôm đó -->
-                              <h4 data-from="0" data-to="{{ $stat->vehicle_count }}" class="timer"></h4>
-                          </div>
-                          <div class="text-box2">
-                              <!-- Tên bãi đỗ xe -->
-                              <p>{{ $stat->name }}<span>Xe hôm nay</span></p>
-                          </div>
-                      </div>
-                  </div>
-              @endforeach
-          </div>
-      </div>
-  </section>
-  
-    <!-- Get in Touch & Drop a Message style-->
-    <div class="resot-activities clearfix">
-      <div class="container clearfix common-pad">
-        <div class="row">
-          <div class="col-lg-6 col-md-7 get-touch-two">
-            <div class="get-touch-wrapper row m0">
-              <div class="touch-img"><img src="acc/images/footer\1.jpg" alt="" class="img-responsive"></div>
-              <div class="touch-txt">
-                <div class="sec-header-touch">
-                  <h2>Tên khách hàng</h2>
-                </div>
-                <h3>Vũ Ngọc Thiệu<span>(Senior Agent)</span></h3>
-                <p>Phone : 034696666</p>
-                <p>Email : Thieu@gmail.com</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-5 home-two-msgwrapper">
-            <div class="sec-header-touch">
-              <h2>Đặt lịch trước</h2>
-            </div>
-            <div class="drop-wrapper input_form">
-              <form id="contactForm" action="sendemail.php" method="post">
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <input id="name" type="text" name="name" placeholder="Your name" class="form-control">
-                  </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <input id="email" type="email" name="email" placeholder="Your Email" class="form-control">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <input id="subject" type="text" name="subject" placeholder="Subject" class="form-control">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <textarea id="message" rows="6" name="message" placeholder="Message" class="form-control"></textarea>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <button type="submit" class="res-btn">Submit Now <i class="fa fa-arrow-right"></i></button>
-                  </div>
-                </div>
-              </form>
-              <div id="success">
-                <p>Your message sent successfully.</p>
-              </div>
-              <div id="error">
-                <p>Something is wrong. Message cant be sent!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+
     <!-- Welcome banner  style-->
     <div class="nasir-subscribe-form-row row">
       <div class="container">

@@ -56,15 +56,15 @@
                         </div>
                         <div class="form-group">
                             <label for="reservation_reservation_time">Thời gian đặt chỗ</label>
-                            <input type="text" name="reservation_reservation_time" class="form-control" id="reservation_reservation_time" value="{{ $data['edit_reservation']->reservation_time }}">
+                            <input type="datetime-local" name="reservation_reservation_time" class="form-control" id="reservation_reservation_time" value="{{ $data['edit_reservation']->reservation_time }}">
                         </div>
                         <div class="form-group">
                             <label for="reservation_start_time">Thời gian bắt đầu</label>
-                            <input type="text" name="reservation_start_time" class="form-control" id="reservation_start_time" value="{{ $data['edit_reservation']->start_time }}">
+                            <input type="datetime-local" name="reservation_start_time" class="form-control" id="reservation_start_time" value="{{ $data['edit_reservation']->start_time }}">
                         </div>
                         <div class="form-group">
                             <label for="reservation_end_time">Thời gian kết thúc</label>
-                            <input type="text" name="reservation_end_time" class="form-control" id="reservation_end_time" value="{{ $data['edit_reservation']->end_time}}">
+                            <input type="datetime-local" name="reservation_end_time" class="form-control" id="reservation_end_time" value="{{ $data['edit_reservation']->end_time}}">
                         </div>
                         <div class="form-group">
                             <label for="reservation_status">Trạng thái</label>

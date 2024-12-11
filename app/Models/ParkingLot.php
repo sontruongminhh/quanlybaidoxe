@@ -15,13 +15,13 @@ class ParkingLot extends Model
         'location',
         'total_slots',
         'managerid',
-        'create_at',
-        'update_at'
+        // 'create_at',
+        // 'update_at'
     ];
 
     // Quan hệ với model ParkingSlot
-    public function parkingSlots()
+    public function vehicles()
     {
-        return $this->hasMany(ParkingSlot::class, 'parkingid', 'parkingid');
+        return $this->hasMany(Vehicle::class, 'parkingid', 'parkingid');
     }
 }

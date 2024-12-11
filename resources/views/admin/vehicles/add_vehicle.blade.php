@@ -89,13 +89,14 @@
                             <input type="text" name="vehicle_vehicle_type" class="form-control" id="exampleInputEmail1" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Thời gian vào</label>
-                            <input type="time" name="vehicle_entry_time" class="form-control" id="exampleInputEmail1" placeholder="">
+                            <label for="vehicleEntryTime">Thời gian vào</label>
+                            <input type="datetime-local" name="vehicle_entry_time" class="form-control" id="vehicleEntryTime" placeholder="">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Thời gian ra</label>
-                            <input type="time" name="vehicle_exit_time" class="form-control" id="exampleInputEmail1" placeholder="">
+                            <label for="vehicleExitTime">Thời gian ra</label>
+                            <input type="datetime-local" name="vehicle_exit_time" class="form-control" id="vehicleExitTime" placeholder="">
                         </div>
+                        
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ảnh xe</label>
                             <input type="file" name="vehicle_image" class="form-control" id="exampleInputEmail1" placeholder="">

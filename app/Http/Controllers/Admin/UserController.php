@@ -23,15 +23,44 @@ class UserController extends Controller
 
     public function save_user(Request $request)
     {
-        $data = array();
-        $data['email'] = $request -> user_email;
-        $data['password'] = $request -> user_password;
-        $data['role'] = $request -> user_role;
-        $data['remember_token'] = $request -> user_token;
-        $data['name'] = $request -> user_name;
-        $data['phone'] = $request -> user_phone;
-        $data['address'] = $request -> user_address;
-        $data['image'] = $request -> user_image;
+        $request->validate(
+            [
+                'user_name' => 'required|string|max:255',
+                'user_phone' => 'required|numeric|digits_between:10,15',  // Kiểm tra số và độ dài từ 10 đến 15 ký tự
+                'user_email' => 'required|email|regex:/^.+@gmail\.com$/',  // Kiểm tra email có định dạng @gmail.com
+                'user_password' => 'required|string|min:6',
+                'user_address' => 'required|string|max:255',
+                'user_role' => 'required|string|max:50',
+                'user_image' => 'required|string',
+                // 'user_token' => 'nullable|string|max:100',
+            ],
+            [
+                'user_name.required' => 'Tên người dùng không được để trống.',
+                'user_phone.required' => 'Số điện thoại không được để trống.',
+                'user_phone.numeric' => 'Số điện thoại phải là số.',
+                'user_phone.digits_between' => 'Số điện thoại phải có từ 10 đến 15 chữ số.',
+                'user_email.required' => 'Email không được để trống.',
+                'user_email.email' => 'Email phải đúng định dạng.',
+                'user_email.regex' => 'Email phải có định dạng @gmail.com.',
+                'user_password.required' => 'Password không được để trống.',
+                'user_address.required' => 'Địa chỉ không được để trống.',
+                'user_role.required' => 'Phân quyền không được để trống.',
+                'user_image.required' => 'Ảnh không được để trống.',
+                // 'user_token.max' => 'Token không được dài quá 100 ký tự.',
+            ]
+        );
+        
+        
+        $data = [
+            'email' => $request->user_email,
+            'role' => $request->user_role,
+            'name' => $request->user_name,
+            'phone' => $request->user_phone,
+            'address' => $request->user_address,
+            'password' =>$request->user_password,
+            'remember_token' =>$request->user_token,
+            'image' =>$request->user_image,
+        ];
         DB::table('users')->insert($data);
         Session::put('message', 'Thêm thành công');
         return Redirect::to('add-user');
