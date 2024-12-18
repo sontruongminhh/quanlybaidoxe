@@ -91,8 +91,8 @@
         @if ($userEmail == null)
     <div class="pull-right right-infos link-list">
         <ul class="list-inline">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Registration</a></li>
+            <li><a href="#">Đăng nhập</a></li>
+            <li><a href="#">Đăng ký</a></li>
         </ul>
     </div>
         @else

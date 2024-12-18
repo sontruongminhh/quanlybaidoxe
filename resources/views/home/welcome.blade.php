@@ -180,9 +180,9 @@
     <div class="container">
         <div class="pull-left left-infos contact-infos">
             <ul class="list-inline">
-                <li><a href="#"><i class="fa fa-phone"></i> (+44) 555 890767</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 56, Building- Avenue-96, New York</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> info@saturnthemes.com</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i> 03469999</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> nguyenducdat, thanhphovinh</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i> sontruong@gmail.com</a></li>
             </ul>
         </div>
         <!-- /.pull-left left-infos-->

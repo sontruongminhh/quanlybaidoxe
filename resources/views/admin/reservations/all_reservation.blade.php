@@ -41,16 +41,15 @@
               <td>{{ $pro->parking_slot}}</td>
               
               <td>
-                @if($pro->status === 'đã duyệt')
-                    <button class="btn btn-success">Đã duyệt</button>
-                @elseif($pro->status === 'đang chờ')
-                    <button class="btn btn-danger">Đang chờ</button>
+                @if($pro->status === 'đã đỗ')
+                    <button class="btn btn-success">Đã đỗ</button>
+                @elseif($pro->status === 'chưa đỗ')
+                    <button class="btn btn-danger">Chưa đỗ</button>
                 @else
                     <button class="btn btn-secondary">Trạng thái không xác định</button>
                 @endif
             </td>
-            
-                         
+                           
             <script>
               function updateStatus(id) {
                   fetch(`/update-status/${id}`, {

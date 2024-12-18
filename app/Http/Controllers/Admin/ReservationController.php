@@ -130,7 +130,7 @@ class ReservationController extends Controller
     $product = Reservation::find($id);
     if ($product) {
         // Chuyển đổi trạng thái
-        $product->status = $product->status === 'đang chờ' ? 'đã duyệt' : 'đang chờ';
+        $product->status = $product->status === 'chưa đỗ' ? 'đã đỗ' : 'chưa đỗ';
         $product->save();
 
         return response()->json([
@@ -140,6 +140,7 @@ class ReservationController extends Controller
     }
     return response()->json(['success' => false]);
 }
+
 
 
 }

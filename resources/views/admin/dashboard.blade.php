@@ -69,15 +69,15 @@
 											<h2>{{ $feedbackPending }}</h2>
 										</div>
 									</div>
-									<div class="col-lg-3 col-sm-6 col-12">
+									{{-- <div class="col-lg-3 col-sm-6 col-12">
 										<div class="hospital-tiles">
 											<p>Lịch đặt đang chờ duyệt</p>
 											<h2>{{ $reservationPendingToday }}</h2>
 										</div>
-									</div>
+									</div> --}}
 									<div class="col-lg-3 col-sm-6 col-12">
 										<div class="hospital-tiles">
-											<p>Lịch đặt đã duyệt</p>
+											<p>Lịch đặt chỗ hôm nay</p>
 											<h2>{{ $reservationResolvedToday }}</h2>
 										</div>
 									</div>

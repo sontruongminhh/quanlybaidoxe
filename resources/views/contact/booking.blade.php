@@ -41,7 +41,7 @@
       <!-- /.side-menu-widget-->
       <div class="side-menu-widget gallery-widget">
         <div class="title-box">
-          <h4>From Our Gallery</h4><span class="decor-line inline"></span>
+          <h4>hello</h4><span class="decor-line inline"></span>
         </div>
         <!-- /.title-box-->
         <ul class="list-inline">
@@ -56,20 +56,20 @@
         </ul>
         <!-- /.list-inline-->
         <ul class="contact-info">
-          <li>hello@youremail.com</li>
-          <li>+1234567890</li>
+          <li>son@gmail.com</li>
+          <li>034666666</li>
         </ul>
         <!-- /.contact-info-->
       </div>
       <!-- /.side-menu-widget-->
       <div class="side-menu-widget subscribe-widget">
         <div class="title-box">
-          <h4>Subscribe for our Special Offers</h4><span class="decor-line inline"></span>
+          <h4>Đăng ký để nhận ưu đãi của chúng tôi</h4><span class="decor-line inline"></span>
         </div>
         <!-- /.title-box-->
         <form action="#" class="clearfix">
           <input type="text" placeholder="Enter email address">
-          <button type="submit" class="res-btn">Subscribe</button>
+          <button type="submit" class="res-btn">Đăng ký</button>
         </form>
       </div>
     </section>
@@ -91,8 +91,8 @@
         @if ($userEmail == null)
     <div class="pull-right right-infos link-list">
         <ul class="list-inline">
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Registration</a></li>
+            <li><a href="#">Đăng nhập</a></li>
+            <li><a href="#">Đăng ký</a></li>
         </ul>
     </div>
         @else
@@ -172,7 +172,7 @@
     <!-- Header  Inner style-->
     <section class="row final-inner-header">
       <div class="container">
-        <h2 class="this-title">Phản hồi</h2>
+        <h2 class="this-title">Đặt lịch gửi xe</h2>
       </div>
     </section>
     <section class="row final-breadcrumb">
@@ -187,8 +187,8 @@
     <!-- Booking style-->
     <section class="container clearfix common-pad-inner booknow">
       <div class="sec-header">
-        <h2>Booking</h2>
-        <h3>Pick a room that best suits your taste and budget</h3>
+        <h2>Đặt lịch</h2>
+        <h3>Chọn một chỗ đỗ phù hợp và ưng ý nhất của bạn</h3>
       </div>
       <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 pull-left">
@@ -248,9 +248,9 @@
           </div>
         </div>
         <div class="col-sm-4 pull-right">
-          <div class="book-right"><span><img src="acc/images/booking\1.jpg" alt=""></span>
-            <h2>About Resort</h2>
-            <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliqu id etx ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam.</p>
+          <div class="book-right"><span><img src="acc/images\1.jpg" alt=""></span>
+            <h2>Bãi đỗ sontruong</h2>
+            <p>Đảm bảo an toàn cho phương tiện của bạn được nghĩ ngơi đúng nghĩa</p>
           </div>
         </div>
       </div>
@@ -261,12 +261,12 @@
       <div class="container">
         <div class="row this-dashed">
           <div class="this-texts">
-            <h2>STAY TUNED WITH US</h2>
-            <h3>Get our updated offers, discounts, events and much more!</h3>
+            <h2>Liên hệ chúng tôi</h2>
+            <h3>Qua địa chỉ email này</h3>
           </div>
           <form action="#" method="post" class="this-form input-group">
-            <input type="email" placeholder="Enter your email address" class="form-control"><span class="input-group-addon">
-              <button type="submit" class="res-btn">subscribe<i class="fa fa-arrow-right"></i></button></span>
+            <input type="email" placeholder="nhấn vào đây" class="form-control"><span class="input-group-addon">
+              <button type="submit" class="res-btn">xong<i class="fa fa-arrow-right"></i></button></span>
           </form>
         </div>
       </div>

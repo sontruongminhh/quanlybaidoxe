@@ -36,12 +36,7 @@ class DashboardController extends Controller
                         ->count();
 
                 // Thống kê lịch đặt
-                $reservationResolvedToday = Reservation::whereDate('reservation_time', $date)
-                        ->where('status', 'đã duyệt')
-                        ->count();
-                $reservationPendingToday = Reservation::whereDate('reservation_time', $date)
-                        ->where('status', 'đang chờ')
-                        ->count();
+                $reservationResolvedToday = Reservation::whereDate('reservation_time', $date)->count();
 
                 // Truyền dữ liệu sang view
                 return view('admin.dashboard', compact(
@@ -52,7 +47,7 @@ class DashboardController extends Controller
                         'feedbackPending',
                         'feedbackResolved',
                         'reservationResolvedToday',
-                        'reservationPendingToday'
+                       
                 ));
         }
 }
