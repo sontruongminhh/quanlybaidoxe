@@ -97,9 +97,9 @@
     </div>
         @else
     @if ($userRole == 'admin')
-        <p class="pull-right">Welcome, Admin!</p>
+        <p class="pull-right">Chào mừng, Admin!</p>
     @else
-    <p class="pull-right" style="color: #ffffff; font-weight: bold; font-size: 1em;">Welcome, {{ $userEmail }}!</p>
+    <p class="pull-right" style="color: #ffffff; font-weight: bold; font-size: 1em;">Chào mừng, {{ $userEmail }}!</p>
     @endif
     @endif 
     
@@ -179,7 +179,7 @@
       <div class="container">
         <ol class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li class="active">Phản hồi</li>
+          <li class="active">Đặt lịch</li>
         </ol>
       </div>
     </section>
@@ -193,55 +193,76 @@
       <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 pull-left">
           <div class="book-left-content input_form">
-            <form id="contactBooking" action="contact_process.php" method="post">
+            <div class="row">
+                <div class="col-lg-12">
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <form action="{{ route('send.booking') }}" method="post">
+              @csrf
+              <input type="hidden" name="customerid" value="{{ $userid }}">
+              
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                  <input id="name" type="text" name="name" placeholder="Your name" class="form-control">
+                  <input type="text" value="{{ $userName }}" class="form-control" readonly>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                  <input id="email" type="email" name="email" placeholder="Your Email" class="form-control">
+                  <input type="email" value="{{ $userEmail }}" class="form-control" readonly>
                 </div>
               </div>
+              
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                  <input placeholder="Arival Date" name="arival_date" type="text" class="form-control datepicker-example8">
+                  <select name="parkingid" id="parkingid" class="form-control" required>
+                    <option value="">Chọn bãi đỗ xe</option>
+                    @foreach($parkingLots as $lot)
+                      <option value="{{ $lot->parkingid }}">{{ $lot->name }}</option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                  <input type="text" placeholder="Departure Date" name="departure_date" class="form-control datepicker-example8">
+                  <select name="parking_slotid" id="parking_slotid" class="form-control" required>
+                    <option value="">Chọn chỗ đỗ xe</option>
+                    @foreach($parkingSlots as $slot)
+                      <option value="{{ $slot->parking_slotid }}">{{ $slot->slort_number }}</option>
+                    @endforeach
+                  </select>
                 </div>
+               
               </div>
+
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                  <div class="select-box">
-                    <select name="chooseAdults" class="select-menu">
-                      <option value="default">Adults</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
-                  </div>
+                  <input name="start_time" type="datetime-local" class="form-control" required>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 m0 col-xs-12">
-                  <div class="select-box">
-                    <select name="chooseChildren" class="select-menu">
-                      <option value="default">Children</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
-                  </div>
+                  <input type="datetime-local" name="end_time" class="form-control" required>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <textarea id="message" rows="6" name="message" placeholder="Message" class="form-control"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <button type="submit" class="res-btn">Submit Now</button>
+                  <button type="submit" class="res-btn">Đặt lịch</button>
                 </div>
               </div>
             </form>
@@ -358,5 +379,51 @@
     <script src="acc/js/jquery.fancybox.pack.js"></script>
     <script src="vendors\jquery-ui-1.11.4\jquery-ui.min.js"></script>
     <script src="acc/js/custom.js"></script>
+    @push('scripts')
+    <script>
+    document.getElementById('parkingid').addEventListener('change', function() {
+        let parkingid = this.value;
+        let slotSelect = document.getElementById('parking_slotid');
+        
+        // Reset chỗ đỗ xe
+        slotSelect.innerHTML = '<option value="">Chọn chỗ đỗ xe</option>';
+        
+        if(parkingid) {
+            // Gọi API để lấy danh sách chỗ đỗ
+            fetch(`/get-parking-slots/${parkingid}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(slot => {
+                        let option = document.createElement('option');
+                        option.value = slot.parking_slotid;
+                        option.textContent = `Vị trí: ${slot.slort_number}`;
+                        slotSelect.appendChild(option);
+                    });
+                });
+        }
+    });
+    </script>
+    @endpush
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {!! session('error') !!}
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
   </body>
 </html>

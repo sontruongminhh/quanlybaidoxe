@@ -38,20 +38,28 @@ class AuthController
             'password' => $request->input('Password'),
         ];
 
+        $user = User::where('email', $request->input('Email'))->first();
+
+        if ($user && $user->status == 0) {
+            return redirect()->back()
+                ->withErrors(['error_login' => 'Vui lòng xác thực email trước khi đăng nhập']);
+        }
+
         if (Auth::attempt($credentials)) {
-            $user = Auth::user(); // Lấy thông tin người dùng sau khi đăng nhập
+            $user = Auth::user();
             Cookie::queue('user_email', $user->email, 120);
             Cookie::queue('user_name', $user->name, 120);
             Cookie::queue('user_role', $user->role, 120);
-            if ($user->role == 3){               
-                // Chuyển hướng đến route 'home' và truyền dữ liệu kèm theo
+            
+            if ($user->role == 3) {
                 return redirect()->route('home');
             } else {
-                return redirect()->route('admin'); // Điều hướng đến trang admin nếu role khác 3
+                return redirect()->route('admin');
             }
-        } else {
-            return redirect()->back()->withErrors(['error_login' => 'Tài khoản hoặc mật khẩu không chính xác']);
         }
+
+        return redirect()->back()
+            ->withErrors(['error_login' => 'Tài khoản hoặc mật khẩu không chính xác']);
     }
 
 
@@ -73,20 +81,61 @@ class AuthController
 
     public function create_user(Request $request)
     {
-        request()->validate([
-            'Email' => 'required|Email|unique:users',
-            'Password' => 'required'
+        $request->validate([
+            'Email' => 'required|email|unique:users,email',
+            'Password' => 'required|min:6|confirmed',
+        ], [
+            'Email.required' => 'Email là bắt buộc',
+            'Email.email' => 'Email không đúng định dạng',
+            'Email.unique' => 'Email đã tồn tại trong hệ thống',
+            'Password.required' => 'Mật khẩu là bắt buộc',
+            'Password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+            'Password.confirmed' => 'Xác nhận mật khẩu không khớp',
         ]);
-        $save = new User;
-        $save->Email = trim($request->Email);
-        $save->Password = Hash::make($request->Password);
-        $save->Remember_token = Str::random(40);
-        $save->save();
 
-        Mail::to($save->Email)->send(new RegisterMail($save));
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->Email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'password' => Hash::make($request->Password),
+                'remember_token' => Str::random(60),
+                'role' => 3,
+                'status' => 0
+            ]);
 
-        return redirect('register')->with('Thành công', "Tài khoản của bạn đã đăng ký thành công");
+            Mail::to($user->email)->send(new RegisterMail($user));
+
+            return redirect()->route('register')
+                ->with('success', 'Vui lòng kiểm tra email của bạn để xác thực tài khoản!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['error' => 'Có lỗi xảy ra khi đăng ký. Vui lòng thử lại.']);
+        }
     }
+
+    // Thêm function mới để xác thực email
+    public function verifyEmail($token)
+    {
+        $user = User::where('remember_token', $token)->first();
+        
+        if ($user) {
+            $user->email_verified_at = now();
+            $user->status = 1;
+            $user->remember_token = null;
+            $user->save();
+            
+            return redirect()->route('login')
+                ->with('success', 'Xác thực email thành công! Bạn có thể đăng nhập ngay bây giờ.');
+        }
+        
+        return redirect()->route('login')
+            ->with('error', 'Link xác thực không hợp lệ!');
+    }
+
     /**
      * Show view login
      *

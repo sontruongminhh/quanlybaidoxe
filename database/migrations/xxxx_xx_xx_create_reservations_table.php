@@ -1,0 +1,1 @@
+$table->string('status')->default('chưa đỗ'); 

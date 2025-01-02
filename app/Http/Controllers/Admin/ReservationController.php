@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 class ReservationController extends Controller
 {
-    public function add_reservation()
-    {
-        $data = [
-            'parking_lots' => ParkingLot::all(),
-            'parking_slots' => ParkingSlot::all(),
-            'users' => User::all(),
-        ];
-        return view('admin.reservations.add_reservation', ['data' => $data]);
-    }
+    // public function add_reservation()
+    // {
+    //     $data = [
+    //         'parking_lots' => ParkingLot::all(),
+    //         'parking_slots' => ParkingSlot::all(),
+    //         'users' => User::all(),
+    //     ];
+    //     return view('admin.reservations.add_reservation', ['data' => $data]);
+    // }
     public function all_reservation()
     {
         $all_reservation = reservation::select(
@@ -33,62 +33,62 @@ class ReservationController extends Controller
             ->join('parking_lots', 'parking_lots.parkingid', 'reservations.parkingid')
             ->join('parking_slots','parking_slots.parking_slotid','reservations.parking_slotid')
             ->join('users', 'users.userid','reservations.customerid')
-            ->orderby('reservations.reservationid', 'desc')->get();
+            ->orderby('reservations.reservationid', 'desc')// tăng dần thì asc
+            ->paginate(5);
+        
         $manager_reservation = view('admin.reservations.all_reservation')->with('all_reservation', $all_reservation);
         return view('admin.index')->with('admin.all_reservation', $manager_reservation);
     }
 
-    public function save_reservation(Request $request) {
-        // Xác thực các yêu cầu đầu vào để đảm bảo dữ liệu không bị trống
-        $request->validate([
-            'reservation_parkingid' => 'required',
-            'reservation_parking_slotid' => 'required',
-            'reservation_customerid' => 'required',
-            'reservation_reservation_time' => 'required',
-            'reservation_start_time' => 'required',
-            'reservation_end_time' => 'required',
-            'reservation_status' => 'required|string'
-        ], [
-            'reservation_parkingid.required' => 'Bãi đỗ không được để trống.',
-            'reservation_parking_slotid.required' => 'Vị trí đỗ không được để trống.',
-            'reservation_customerid.required' => 'Khách hàng không được để trống.',
-            'reservation_reservation_time.required' => 'Thời gian đặt chỗ không được để trống.',
-            'reservation_start_time.required' => 'Thời gian bắt đầu đặt không được để trống.',
-            'reservation_end_time.required' => 'Thời gian kết thúc đặt không được để trống.',
-            'reservation_status.required' => 'Trạng thái không được để trống.'
-        ]);
+    // public function save_reservation(Request $request) {
+    //     // Xác thực các yêu cầu đầu vào để đảm bảo dữ liệu không bị trống
+    //     $request->validate([
+    //         'reservation_parkingid' => 'required',
+    //         'reservation_parking_slotid' => 'required',
+    //         'reservation_customerid' => 'required',
+    //         'reservation_reservation_time' => 'required',
+    //         'reservation_start_time' => 'required',
+    //         'reservation_end_time' => 'required',
+    //         'reservation_status' => 'required|string'
+    //     ], [
+    //         'reservation_parkingid.required' => 'Bãi đỗ không được để trống.',
+    //         'reservation_parking_slotid.required' => 'Vị trí đỗ không được để trống.',
+    //         'reservation_customerid.required' => 'Khách hàng không được để trống.',
+    //         'reservation_reservation_time.required' => 'Thời gian đặt chỗ không được để trống.',
+    //         'reservation_start_time.required' => 'Thời gian bắt đầu đặt không được để trống.',
+    //         'reservation_end_time.required' => 'Thời gian kết thúc đặt không được để trống.',
+    //         'reservation_status.required' => 'Trạng thái không được để trống.'
+    //     ]);
     
-        // Kiểm tra xem chỗ đỗ đã tồn tại trong cơ sở dữ liệu hay chưa
-        $existing_reservation = DB::table('reservations')
-            ->where('parkingid', $request->reservation_parkingid)
-            ->where('parking_slotid', $request->reservation_parking_slotid)
-            ->first();
+    //     // Kiểm tra xem chỗ đỗ đã tồn tại trong cơ sở dữ liệu hay chưa
+    //     $existing_reservation = DB::table('reservations')
+    //         ->where('parkingid', $request->reservation_parkingid)
+    //         ->where('parking_slotid', $request->reservation_parking_slotid)
+    //         ->first();
         
-        if ($existing_reservation) {
-            return redirect()->back()->withErrors([
-                'duplicate_reservation' => 'Vị trí đỗ xe này đã được đặt, vui lòng chọn vị trí khác.'
-            ])->withInput();
-        }
+    //     if ($existing_reservation) {
+    //         return redirect()->back()->withErrors([
+    //             'duplicate_reservation' => 'Vị trí đỗ xe này đã được đặt, vui lòng chọn vị trí khác.'
+    //         ])->withInput();
+    //     }
     
-        // Thu thập dữ liệu từ form
-        $data = [
-            'customerid' => $request->reservation_customerid,
-            'reservation_time' => $request->reservation_reservation_time,
-            'start_time' => $request->reservation_start_time,
-            'end_time' => $request->reservation_end_time,
-            'status' => $request->reservation_status,
-            'parking_slotid' => $request->reservation_parking_slotid,
-            'parkingid' => $request->reservation_parkingid
-        ];
+    //     // Thu thập dữ liệu từ form
+    //     $data = [
+    //         'customerid' => $request->reservation_customerid,
+    //         'reservation_time' => $request->reservation_reservation_time,
+    //         'start_time' => $request->reservation_start_time,
+    //         'end_time' => $request->reservation_end_time,
+    //         'status' => $request->reservation_status,
+    //         'parking_slotid' => $request->reservation_parking_slotid,
+    //         'parkingid' => $request->reservation_parkingid
+    //     ];
     
-        // Chèn dữ liệu vào bảng
-        DB::table('reservations')->insert($data);
-        Session::put('message', 'Thêm thành công.');
-        return Redirect::to('add-reservation');
-    }
+    //     // Chèn dữ liệu vào bảng
+    //     DB::table('reservations')->insert($data);
+    //     Session::put('message', 'Thêm thành công.');
+    //     return Redirect::to('add-reservation');
+    // }
     
-    
-
     public function edit_reservation($reservation_id)
     {
         $edit_reservation = DB::table('reservations')->where('reservationid', $reservation_id)->first();
@@ -126,20 +126,20 @@ class ReservationController extends Controller
     }
    
     public function updateStatus(Request $request, $id)
-{
-    $product = Reservation::find($id);
-    if ($product) {
-        // Chuyển đổi trạng thái
-        $product->status = $product->status === 'chưa đỗ' ? 'đã đỗ' : 'chưa đỗ';
-        $product->save();
+    {
+        $reservation = Reservation::find($id);
+        if ($reservation) {
+            // Chuyển đổi trạng thái
+            $reservation->status = $reservation->status === 'chưa đỗ' ? 'đã đỗ' : 'chưa đỗ';
+            $reservation->save();
 
-        return response()->json([
-            'success' => true,
-            'newStatus' => $product->status
-        ]);
+            return response()->json([
+                'success' => true,
+                'newStatus' => $reservation->status
+            ]);
+        }
+        return response()->json(['success' => false]);
     }
-    return response()->json(['success' => false]);
-}
 
 
 

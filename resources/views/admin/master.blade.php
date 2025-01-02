@@ -13,8 +13,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- Title -->
 <title>@yield('title')</title>
-
-
 <!-- *************
     ************ Common Css Files *************
     ************ -->
@@ -129,7 +127,7 @@
 											<a href="hospital-add-doctor.html"><i class="icon-user1"></i> My Profile</a>
 											<a href="account-settings.html"><i class="icon-settings1"></i> Account Settings</a>
 											<a href="hospital-reviews.html"><i class="icon-activity"></i> Activity Logs</a>
-											<a href="{{ route('logout') }}"><i class="icon-log-out1"></i>
+											<a style="color:red" href="{{ route('logout') }}"><i class="icon-log-out1"></i>
 												Đăng xuất
 											</a>
 										</div>
@@ -237,88 +235,6 @@
 							     Đặt chỗ
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
-								<li>
-									<a class="dropdown-item" href="{{URL::to('/add-reservation')}} ">Thêm mới</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{URL::to('all-reservation')}}">Danh sách</a>
-							</ul>
-						</li>
-						
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">
-								<i class="icon-users nav-icon"></i>
-							     Phản hồi
-							</a>
-							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
-								
-								<li>
-									<a class="dropdown-item" href="{{URL::to('all-contact')}}">Danh sách</a>
-							</ul>
-						</li>
-	                    @endif
-						
-						@if (Auth::user()->role == User::ROLE['ADMIN'])
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">
-								<i class="icon-users nav-icon"></i>
-								Phương tiện
-							</a>
-							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
-								<li>
-									<a class="dropdown-item" href="{{URL::to('/add-vehicle')}} ">Thêm mới</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{URL::to('all-vehicle')}}">Danh sách</a>
-								</li>
-								
-									{{-- <a class="dropdown-item" href="error2.html">505</a> --}}
-								</li>
-							</ul>
-						</li>
-					
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">
-								<i class="icon-book-open nav-icon"></i>
-								Khách hàng
-							</a>
-							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
-								<li>
-									<a class="dropdown-item" href="{{URL::to('/add-customer')}} ">Thêm mới</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{URL::to('all-customer')}}">Danh sách</a>
-								</li>
-								
-									{{-- <a class="dropdown-item" href="error2.html">505</a> --}}
-								</li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">
-								<i class="icon-users nav-icon"></i>
-							     Lịch sử gửi xe
-							</a>
-							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
-								<li>
-									<a class="dropdown-item" href="{{URL::to('/add-log')}} ">Thêm mới</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="{{URL::to('all-log')}}">Danh sách</a>
-							</ul>
-						</li>
-						
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false">
-								<i class="icon-users nav-icon"></i>
-							     Đặt chỗ
-							</a>
-							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
 								{{-- <li>
 									<a class="dropdown-item" href="{{URL::to('/add-reservation')}} ">Thêm mới</a>
 								</li> --}}
@@ -326,6 +242,7 @@
 									<a class="dropdown-item" href="{{URL::to('all-reservation')}}">Danh sách</a>
 							</ul>
 						</li>
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
@@ -336,8 +253,38 @@
 								
 								<li>
 									<a class="dropdown-item" href="{{URL::to('all-contact')}}">Danh sách</a>
+								</li>
 							</ul>
 						</li>
+						{{-- <li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								<i class="icon-users nav-icon"></i>
+							     Xe trong bãi
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
+								
+								<li>
+									<a class="dropdown-item" href="{{URL::to('all-parkingslot')}}">Danh sách</a>
+								</li>
+							</ul>
+						</li> --}}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								<i class="icon-users nav-icon"></i>
+							    Giá dịch vụ
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="loginDropdown">
+								
+								<li>
+									<a class="dropdown-item" href="{{URL::to('all-pricing')}}">Danh sách</a>
+								</li>
+							</ul>
+						</li>
+	                    @endif
+						
+						@if (Auth::user()->role == User::ROLE['ADMIN'])
 							
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown"
@@ -356,8 +303,8 @@
 									{{-- <a class="dropdown-item" href="error2.html">505</a> --}}
 								</li>
 							</ul>
-						</li>
-						@endif	
+						        </li>
+						 @endif	
 					</ul>
 				</div>
 			</nav>

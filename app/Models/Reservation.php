@@ -12,6 +12,7 @@ class Reservation extends Model
 
     protected $fillable = [
         'customerid',
+        'parkingid',
         'parking_slotid',
         'reservation_time',
         'start_time',
@@ -29,5 +30,11 @@ class Reservation extends Model
     public function parkingSlot()
     {
         return $this->belongsTo(ParkingSlot::class, 'parking_slotid', 'parking_slotid');
+    }
+
+    // Quan hệ với bảng parking_lots (bãi đỗ xe)
+    public function parkingLot()
+    {
+        return $this->belongsTo(ParkingLot::class, 'parkingid', 'parkingid');
     }
 }

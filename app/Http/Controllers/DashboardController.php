@@ -38,10 +38,10 @@ class DashboardController extends Controller
                 // Thống kê lịch đặt
                 $reservationResolvedToday = Reservation::whereDate('reservation_time', $date)->count();
 
-                // Truyền dữ liệu sang view
+                
                 return view('admin.dashboard', compact(
                         'totalVehiclesToday',
-                        'totalVehiclesInParking', // Truyền số xe hiện tại trong bãi
+                        'totalVehiclesInParking', 
                         'totalCustomers',
                         'date',
                         'feedbackPending',

@@ -24,7 +24,7 @@ class ContactController extends Controller
             )
             ->join('users', 'users.userid', '=', 'contact.userid')
             ->orderby('contact.contactid', 'desc')
-            ->get();
+            ->paginate(10);
     
         $manager_contact = view('admin.contact.all_contact')->with('all_contact', $all_contact);
         return view('admin.index')->with('admin.all_contact', $manager_contact);

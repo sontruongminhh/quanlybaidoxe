@@ -32,7 +32,9 @@ class LogController extends Controller
         )
             ->join('vehicles', 'vehicles.vehicleid', 'logs.vehicleid')
             ->join('users', 'users.userid','logs.userid')
-            ->orderby('logs.logid', 'desc')->get();
+            ->orderby('logs.logid', 'desc')
+            ->paginate(10);
+        
         $manager_log = view('admin.logs.all_log')->with('all_log', $all_log);
         return view('admin.index')->with('admin.all_log', $manager_log);
     }
@@ -89,16 +91,7 @@ class LogController extends Controller
     }
     
     public function update_log(Request $request, $log_id) {
-        // // Kiểm tra xem lịch sử với cùng vehicleid (biển số) đã tồn tại trong cơ sở dữ liệu hay chưa
-        // $existing_reservation = DB::table('logs')
-        //     ->where('vehicleid', $request->log_vehicleid)
-        //     ->first();
-        
-        // if ($existing_reservation) {
-        //     return redirect()->back()->withErrors([
-        //         'duplicate_reservation' => 'Biển số này đã tồn tại, vui lòng nhập lại.'
-        //     ])->withInput();
-        // }
+       
         $data['userid'] = $request -> log_userid;
         $data['vehicleid'] = $request -> log_vehicleid;
         $data['action'] = $request -> log_action;

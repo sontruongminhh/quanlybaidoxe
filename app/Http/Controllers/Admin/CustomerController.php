@@ -17,7 +17,9 @@ class CustomerController extends Controller
     }
     public function all_customer(){
         $all_customer = DB::table('users')
-        ->orderby('users.userid', 'desc')->get();
+            ->where('role', 3)
+            ->orderby('users.userid', 'desc')
+            ->paginate(5);
         $manager_customer = view('admin.customers.all_customer')->with('all_customer', $all_customer);
         return view('admin.index')->with('admin.all_customer', $manager_customer);
     }
@@ -56,9 +58,6 @@ class CustomerController extends Controller
     
     public function update_customer(Request $request, $customer_id) {
         $data['email'] = $request -> user_email;
-        // $data['password'] = $request -> user_password;
-        // $data['role'] = $request -> user_role;
-        // $data['remember_token'] = $request -> user_token;
         $data['name'] = $request -> user_name;
         $data['phone'] = $request -> user_phone;
         $data['address'] = $request -> user_address;

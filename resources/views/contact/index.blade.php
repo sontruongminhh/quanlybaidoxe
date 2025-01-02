@@ -97,9 +97,9 @@
     </div>
         @else
     @if ($userRole == 'admin')
-        <p class="pull-right">Welcome, Admin!</p>
+        <p class="pull-right">Chào mừng, Admin!</p>
     @else
-    <p class="pull-right" style="color: #ffffff; font-weight: bold; font-size: 1em;">Welcome, {{ $userEmail }}!</p>
+    <p class="pull-right" style="color: #ffffff; font-weight: bold; font-size: 1em;">Chào mừng, {{ $userEmail }}!</p>
     @endif
     @endif
     

@@ -1,73 +1,115 @@
-
 @extends('admin/index')
 @section('admin_content')
-<div class="content-wrapper">
+<div class="container-fluid px-4 py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow">
+                <div class="card-header bg-white py-3">
+                    <h5 class="card-title mb-0">Thêm mới khách hàng</h5>
+                </div>
 
-    <!-- Row start -->
-    <div class="row gutters">
-        <div class="col-lg-3 col-sm-12">
-            <div class="card">
+                @if(session('message'))
+                    <div class="alert alert-success alert-dismissible fade show mx-4 mt-3" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="card-body">
-                    <div class="doctor-profile">
-                        <div class="doctor-thumb">
-                            <img src="assets/img/user25.png" alt="UI Kits">
+                    <form action="{{URL::to('/save-customer')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
+                                    <input type="text" name="user_name" class="form-control" required 
+                                        placeholder="Nhập tên khách hàng">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input type="tel" name="user_phone" class="form-control" required 
+                                        placeholder="Nhập số điện thoại">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" name="user_email" class="form-control" required 
+                                        placeholder="Nhập email">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+                                    <input type="password" name="user_password" class="form-control" required 
+                                        placeholder="Nhập mật khẩu">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Địa chỉ</label>
+                                    <input type="text" name="user_address" class="form-control" 
+                                        placeholder="Nhập địa chỉ">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Ảnh đại diện</label>
+                                    <input type="file" name="user_image" class="form-control" accept="image/*">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Thêm mới khách hàng</div>
-                </div>
-                <?php
-                $message = session()->get('message');
-                if($message){
-                    echo '<h5 class="text-alert"> '.$message.' </h5>';
-                    session()->put('message', null);
-                }
-                ?>
-                <div class="card-body">
-                    
-                    <form role="form" action="{{URL::to('/save-user')}}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                    <div class="form-group">
-                            <label for="exampleInputEmail1">Tên người dùng </label>
-                     <input type="text" name="user_name" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Số điện thoại </label>
-                        <input type="text" name="user_phone" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email người dùng </label>
-                        <input type="text" name="user_email" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Mật khẩu</label>
-                        <input type="text" name="user_password" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Địa chỉ</label>
-                        <input type="text" name="user_address" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Quyền khách hàng</label>
-                        <input type="text" name="user_role" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Ảnh</label>
-                        <input type="file" name="user_image" class="form-control" id="exampleInputEmail1" placeholder="">
-                    </div>
-                    <button type="submit" name="add_user" class="btn btn-info">Thêm người dùng</button>
 
+                        <!-- Thêm trường ẩn cho role mặc định là 3 -->
+                        <input type="hidden" name="user_role" value="3">
+
+                        <div class="text-end mt-3">
+                            <a href="{{ url('/all-customer') }}" class="btn btn-secondary me-2">
+                                <i class="fas fa-arrow-left me-1"></i> Quay lại
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus me-1"></i> Thêm khách hàng
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-      
     </div>
-    <!-- Row end -->
-
 </div>
+
+<style>
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.card {
+    border: none;
+    border-radius: 10px;
+}
+.card-header {
+    border-bottom: 1px solid #eee;
+}
+.form-control {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+.form-control:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+}
+.btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+.btn-primary {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+.btn-primary:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+}
+</style>
 @endsection

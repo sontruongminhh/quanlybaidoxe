@@ -14,7 +14,7 @@
       <div id="basicExample_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
         <div class="row"><div class="col-sm-12 col-md-6">
           </div>
-          <div class="col-sm-12 col-md-6"><div id="basicExample_filter" class="dataTables_filter"><label style="margin-left:500px;">Search:<input type="search" class="form-control form-control-sm selectpicker" placeholder="" aria-controls="basicExample"></label></div>
+          <div class="col-sm-12 col-md-6"><div id="basicExample_filter" class="dataTables_filter"><label style="margin-left:500px;">Tìm kiếm <input type="search" class="form-control form-control-sm selectpicker" placeholder="" aria-controls="basicExample"></label></div>
         </div></div><div class="row"><div class="col-sm-12"><table id="basicExample" class="table m-0 dataTable no-footer" role="grid" aria-describedby="basicExample_info">
           <thead>
               <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 100px;">STT</th>
@@ -51,18 +51,19 @@
                   @endforeach         
            </tbody>
       </table>
-      </div></div><div class="row"><div class="col-sm-12 col-md-5">
-        <div class="dataTables_info" id="basicExample_info" role="status" aria-live="polite"></div></div>
-        <div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="basicExample_paginate"><ul class="pagination pagination-sm"><li class="paginate_button page-item previous disabled" id="basicExample_previous">
-          <a href="#" aria-controls="basicExample" data-dt-idx="0" tabindex="0" class="page-link"> Trang</a></li><li class="paginate_button page-item active">
-            <a href="#" aria-controls="basicExample" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item ">
-              <a href="#" aria-controls="basicExample" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item ">
-                <a href="#" aria-controls="basicExample" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item ">
-                  <a href="#" aria-controls="basicExample" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item ">
-                    <a href="#" aria-controls="basicExample" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="basicExample_ellipsis">
-                      <a href="#" aria-controls="basicExample" data-dt-idx="6" tabindex="0" class="page-link">…</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basicExample" data-dt-idx="7" tabindex="0" class="page-link">19</a></li>
-                      <li class="paginate_button page-item next" id="basicExample_next">
-                        <a href="#" aria-controls="basicExample" data-dt-idx="8" tabindex="0" class="page-link">Tiếp theo</a></li></ul></div></div></div></div>
+      </div></div><div class="row">
+    <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info" role="status" aria-live="polite">
+            Hiển thị {{ $all_contact->firstItem() }} đến {{ $all_contact->lastItem() }} 
+            trong tổng số {{ $all_contact->total() }} phản hồi
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers">
+            {{ $all_contact->links('pagination::bootstrap-4') }}
+        </div>
+    </div>
+</div>
     </div>
 </div>
 @endsection 

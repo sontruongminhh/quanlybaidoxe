@@ -232,7 +232,8 @@
             </li>
            
             <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Bãi đỗ <span class="glyphicon glyphicon-chevron-down"></span></a>
-              <ul class="dropdown-submenu dropdown-menu">          
+              <ul class="dropdown-submenu dropdown-menu">
+                <li><a href="{{ route('booking.history') }}">Lịch đặt</a></li>           
               </ul>
             </li>
             <li><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">Liên hệ <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -448,9 +449,9 @@
               <div class="touch-img"><img src="acc/images/footer\1.jpg" alt="" class="img-responsive"></div>
               <div class="touch-txt">
                 <div class="sec-header-touch">
-                  <h2>Tên khách hàng</h2>
+                  <h2>Xem lịch của bạn</h2>
                 </div>
-                <h3>Vũ Ngọc Thiệu<span>(Senior Agent)</span></h3>
+                <h3>Tên bãi đỗ xe<span>(Senior Agent)</span></h3>
                 <p>Phone : 034696666</p>
                 <p>Email : Thieu@gmail.com</p>
               </div>
@@ -458,11 +459,11 @@
           </div>
           <div class="col-lg-6 col-md-5 home-two-msgwrapper">
             <div class="sec-header-touch">
-              <h2>Đặt lịch trước</h2>
+              <h2>Lịch của bạn</h2>
             </div>
             <div class="drop-wrapper input_form">
               <form id="contactForm" action="sendemail.php" method="post">
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <input id="name" type="text" name="name" placeholder="Your name" class="form-control">
                   </div>
@@ -479,18 +480,18 @@
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <textarea id="message" rows="6" name="message" placeholder="Message" class="form-control"></textarea>
                   </div>
-                </div>
+                </div> --}}
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <button type="submit" class="res-btn">Submit Now <i class="fa fa-arrow-right"></i></button>
+                    <a href="{{ route('booking.history') }}" class="res-btn">Kiểm tra <i class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
               </form>
               <div id="success">
-                <p>Your message sent successfully.</p>
+                <p>Đặt lịch thành công.</p>
               </div>
               <div id="error">
-                <p>Something is wrong. Message cant be sent!</p>
+                <p>Đặt lịch thất bại.</p>
               </div>
             </div>
           </div>
@@ -506,7 +507,7 @@
             <h3>Hãy nhập email của bạn!</h3>
           </div>
           <form action="#" method="post" class="this-form input-group">
-            <input type="email" placeholder="Enter your email address" class="form-control"><span class="input-group-addon">
+            <input type="email" placeholder="Điền vào đây" class="form-control"><span class="input-group-addon">
               <button type="submit" class="res-btn">Gửi<i class="fa fa-arrow-right"></i></button></span>
           </form>
         </div>
@@ -519,7 +520,7 @@
     <section class="container clearfix footer-pad">
       <div class="widget about-us-widget col-md-4 col-sm-6">
         <a href="index.html"><img src="acc/images/footer/logo.png" alt="Logo" class="img-responsive"></a>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Bãi đỗ xe Trường Thành</p>
         <a href="aboutus.html">Read More <i class="fa fa-angle-double-right"></i></a>
         <ul class="nav">
           <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -565,12 +566,12 @@
           <ul>
             <li><i class="fa fa-map-marker"></i>
               <div class="fleft location_address">
-                <b>Lake Resort</b><br>Lorance 542B, Tailstoi Town 5248 MT, Worldwide Country
+                <b>Bãi đỗ xe</b><br>Nguyễn Đức Đạt, phường Bến Thủy, thành phố Vinh
               </div>
             </li>
             <li><i class="fa fa-phone"></i>
               <div class="fleft contact_no">
-                <a href="tel:+018655248503">+ 01865 524 8503</a> / <a href="tel:+12549547854">+1254 954 7854</a>
+                <a href="tel:+034691646">+ 034691646</a> / <a href="tel:+12549547854">54 954 7854</a>
               </div>
             </li>
             <li><i class="fa fa-envelope-o"></i>
@@ -587,7 +588,7 @@
     <section class="container clearfix footer-b-pad">
     <div class="footer-copy">
       <div class="pull-left fo-txt">
-        <p>Copyright © Resort and Hotel 2016. All rights reserved.</p>
+        <p> © Bãi đỗ xe 2024.</p>
       </div>
       <div class="pull-right fo-txt">
         <p>Created by: <a href="http://themeforest.net/user/designarc">DesignArc</a></p>

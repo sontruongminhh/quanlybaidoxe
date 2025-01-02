@@ -1,113 +1,126 @@
-
 @extends('admin/index')
 @section('admin_content')
 <div class="content-wrapper">
-
-    <!-- Row start -->
-    <div class="row gutters">
-        <div class="col-lg-3 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="doctor-profile">
-                        <div class="doctor-thumb">
-                            <img src="assets/img/user25.png" alt="UI Kits">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-sm-12">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Thêm mới phương tiện </div>
+                    <h4 class="card-title">Thêm mới phương tiện</h4>
                 </div>
-                <?php
-                $message = session()->get('message');
-                if($message){
-                    echo '<h5 class="text-alert text-center text-success"> '.$message.' </h5>';
-                    session()->put('message', null);
-                }
-                ?>
-                <div class="card-body">
+                
+                @if(session('message'))
+                    <div class="alert alert-success text-center">
+                        {{ session('message') }}
+                    </div>
+                @endif
 
-                    <form role="form" action="{{URL::to('/save-vehicle')}}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                <div class="card-body">
+                    <form action="{{ URL::to('/save-vehicle') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Bãi đỗ xe </label>
-                                    <select class="form-select" name="vehicle_parkingid">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Bãi đỗ xe <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="vehicle_parkingid" required>
+                                        <option value="">-- Chọn bãi đỗ --</option>
                                         @foreach ($data['parking_lots'] as $item)
-                                            <option value="{{ $item->parkingid }}">
-                                                {{ $item->name }}
-                                            </option>
+                                            <option value="{{ $item->parkingid }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Vị trí đỗ</label>
-                                    <select class="form-select" name="vehicle_parking_slotid">
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Vị trí đỗ <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="vehicle_parking_slotid" required>
+                                        <option value="">-- Chọn vị trí --</option>
                                         @foreach ($data['parking_slots'] as $item)
-                                            <option value="{{ $item->parking_slotid }}">
-                                                {{ $item->slort_number }}
-                                            </option>
+                                            <option value="{{ $item->parking_slotid }}">{{ $item->slort_number }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Khách hàng</label>
-                                    <select class="form-select" name="vehicle_ownerid">
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Khách hàng <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="vehicle_ownerid" required>
+                                        <option value="">-- Chọn khách hàng --</option>
                                         @foreach ($data['users'] as $item)
-                                            <option value="{{ $item->userid }}">
-                                                {{ $item->name }}
-                                            </option>
+                                            <option value="{{ $item->userid }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        {{-- <div class="form-group">
-                            <label for="exampleInputEmail1">Người </label>
-                            <input type="text" name="vehicle_ownerid" class="form-control" id="exampleInputEmail1" placeholder="">
-                        </div> --}}
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Biển số </label>
-                                <input type="text" name="vehicle_license_plate" class="form-control" id="exampleInputEmail1" placeholder="">
-                                <!-- Hiển thị thông báo lỗi nếu biển số đã tồn tại -->
-                                @error('vehicle_license_plate')
-                                    <div style="color:red">{{ $message }}</div>
-                                @enderror
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Biển số xe <span class="text-danger">*</span></label>
+                                    <input type="text" name="vehicle_license_plate" class="form-control" required>
+                                    @error('vehicle_license_plate')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Loại xe <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="vehicle_vehicle_type" required>
+                                        <option value="">-- Chọn loại xe --</option>
+                                        <option value="Xe máy">Xe máy</option>
+                                        <option value="Ô tô">Ô tô</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Trạng thái xe <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="vehicle_status" id="vehicle_status" required>
+                                        <option value="parking">Đang đỗ</option>
+                                        <option value="left">Đã rời đi</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Thời gian vào <span class="text-danger">*</span></label>
+                                    <input type="datetime-local" name="vehicle_entry_time" class="form-control" required>
+                                </div>
+
+                                <div class="form-group mb-3 d-none" id="exit_time_group">
+                                    <label class="form-label">Thời gian ra <span class="text-danger">*</span></label>
+                                    <input type="datetime-local" name="vehicle_exit_time" id="vehicle_exit_time" class="form-control">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Ảnh xe</label>
+                                    <input type="file" name="vehicle_image" class="form-control" accept="image/*">
+                                </div>
                             </div>
-                            
-                            <label for="exampleInputEmail1">Loại xe</label>
-                            <input type="text" name="vehicle_vehicle_type" class="form-control" id="exampleInputEmail1" placeholder="">
                         </div>
-                        <div class="form-group">
-                            <label for="vehicleEntryTime">Thời gian vào</label>
-                            <input type="datetime-local" name="vehicle_entry_time" class="form-control" id="vehicleEntryTime" placeholder="">
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="fas fa-save me-2"></i>Thêm phương tiện
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="vehicleExitTime">Thời gian ra</label>
-                            <input type="datetime-local" name="vehicle_exit_time" class="form-control" id="vehicleExitTime" placeholder="">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Ảnh xe</label>
-                            <input type="file" name="vehicle_image" class="form-control" id="exampleInputEmail1" placeholder="">
-                        </div>
-                      
-                        <button type="submit" name="add_vehicle" class="btn btn-info">Thêm xe</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Row end -->
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const statusSelect = document.getElementById('vehicle_status');
+    const exitTimeGroup = document.getElementById('exit_time_group');
+    const exitTimeInput = document.getElementById('vehicle_exit_time');
+
+    statusSelect.addEventListener('change', function() {
+        if (this.value === 'left') {
+            exitTimeGroup.classList.remove('d-none');
+            exitTimeInput.required = true;
+        } else {
+            exitTimeGroup.classList.add('d-none');
+            exitTimeInput.required = false;
+            exitTimeInput.value = ''; // Xóa giá trị thời gian ra
+        }
+    });
+});
+</script>
 @endsection

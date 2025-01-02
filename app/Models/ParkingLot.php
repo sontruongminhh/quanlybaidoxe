@@ -24,4 +24,9 @@ class ParkingLot extends Model
     {
         return $this->hasMany(Vehicle::class, 'parkingid', 'parkingid');
     }
+
+    public function parkingSlots()
+    {
+        return $this->hasMany(ParkingSlot::class);
+    }
 }

@@ -17,18 +17,21 @@ class User extends Authenticatable
 
     protected $fillable = [
         'email',
-        'remember_token',
         'password',
         'role',
         'name',
         'phone',
         'address',
-        'image'
+        'image',
+        'status',
+        'email_verified_at',
+        'remember_token'
     ];
 
     const ROLE = [
         "ADMIN" => 1,
-        "STAFF" => 0
+        "STAFF" => 0,
+        "CUSTOMER" => 3
     ];
     
 }

@@ -1,44 +1,60 @@
 @extends('admin/index')
 @section('admin_content')
-<div class="row">
-    <div class="col-lg-12">
-        <section class="panel">
-            <header class="panel-heading" style="color: red; font-size: 24px;">
-                Chỉnh sửa thông tin người dùng
-            </header>
-            <div class="panel-body">
-                @if(session()->has('message'))
-                    <h5 class="text-alert">{{ session('message') }}</h5>
-                @endif
-                <div class="position-center">
-                    <form role="form" action="{{ route('update_user', ['user_id' => $edit_user->userid]) }}" method="post" enctype="multipart/form-data">
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-8 col-sm-12 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Chỉnh sửa thông tin người dùng</h3>
+                </div>
+
+                <div class="card-body">
+                    @if(session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ URL::to('/update-user/'.$edit_user->userid) }}" method="post">
                         @csrf
+                        
                         <div class="form-group">
-                            <label for="doctor_name">Tên</label>
-                            <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $edit_user->name}}">
+                            <label>Tên người dùng</label>
+                            <input type="text" name="user_name" class="form-control" value="{{ $edit_user->name }}">
                         </div>
+
                         <div class="form-group">
-                            <label for="doctor_name">Số điện thoại</label>
-                            <input type="text" name="user_phone" class="form-control" id="user_phone" value="{{ $edit_user->phone}}">
+                            <label>Số điện thoại</label>
+                            <input type="text" name="user_phone" class="form-control" value="{{ $edit_user->phone }}">
                         </div>
+
                         <div class="form-group">
-                            <label for="doctor_name">Email</label>
-                            <input type="text" name="user_email" class="form-control" id="user_email" value="{{ $edit_user->email}}">
+                            <label>Email</label>
+                            <input type="email" name="user_email" class="form-control" value="{{ $edit_user->email }}">
                         </div>
+
                         <div class="form-group">
-                            <label for="doctor_name">Địa chỉ</label>
-                            <input type="text" name="user_address" class="form-control" id="user_email" value="{{ $edit_user->address}}">
+                            <label>Địa chỉ</label>
+                            <input type="text" name="user_address" class="form-control" value="{{ $edit_user->address }}">
                         </div>
+
                         <div class="form-group">
-                            <label for="doctor_address">phân quyền</label>
-                            <input type="text" name="user_role" class="form-control" id="user_role" value="{{ $edit_user->role }}">
+                            <label>Phân quyền</label>
+                            <select name="user_role" class="form-control">
+                                <option value="1" {{ $edit_user->role == '1' ? 'selected' : '' }}>Admin</option>
+                                <option value="0" {{ $edit_user->role == '0' ? 'selected' : '' }}>Nhân viên</option>
+                                <option value="3" {{ $edit_user->role == '3' ? 'selected' : '' }}>Khách hàng</option>
+                            </select>
                         </div>
-                       
-                        <button type="submit" name="all_user" class="btn btn-info">Cập nhật</button>
+
+                        <div class="form-group mt-4">
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                            <a href="{{ URL::to('all-user') }}" class="btn btn-secondary">Quay lại</a>
+                        </div>
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 </div>
 @endsection   

@@ -34,7 +34,17 @@
               <td>{{ $pro->phone}}</td>
               <td>{{ $pro->email }}</td>
               <td>{{ $pro->address}}</td>
-              <td>{{ $pro->role}}</td>                    
+              <td>
+                  @if($pro->role == '1')
+                      <span class="badge badge-danger">Admin</span>
+                  @elseif($pro->role == '0')
+                      <span class="badge badge-primary">Nhân viên</span>
+                  @elseif($pro->role == '3')
+                      <span class="badge badge-success">Khách hàng</span>
+                  @else
+                      <span class="badge badge-secondary">Không xác định</span>
+                  @endif
+              </td>
               <td>            
                     <button type="button" class="btn btn-primary"><a href="{{URL::to('/edit-user/'.$pro->userid)}}"> Sửa </a></button>
                   <button  type="button" class="btn btn-danger"> <a href="{{URL::to('/delete-user/'.$pro->userid)}}"> Xóa </button>
@@ -43,18 +53,19 @@
                   @endforeach         
            </tbody>
       </table>
-      </div></div><div class="row"><div class="col-sm-12 col-md-5">
-        <div class="dataTables_info" id="basicExample_info" role="status" aria-live="polite"></div></div>
-        <div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="basicExample_paginate"><ul class="pagination pagination-sm"><li class="paginate_button page-item previous disabled" id="basicExample_previous">
-          <a href="#" aria-controls="basicExample" data-dt-idx="0" tabindex="0" class="page-link"> Trang</a></li><li class="paginate_button page-item active">
-            <a href="#" aria-controls="basicExample" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item ">
-              <a href="#" aria-controls="basicExample" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item ">
-                <a href="#" aria-controls="basicExample" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item ">
-                  <a href="#" aria-controls="basicExample" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item ">
-                    <a href="#" aria-controls="basicExample" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="basicExample_ellipsis">
-                      <a href="#" aria-controls="basicExample" data-dt-idx="6" tabindex="0" class="page-link">…</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basicExample" data-dt-idx="7" tabindex="0" class="page-link">19</a></li>
-                      <li class="paginate_button page-item next" id="basicExample_next">
-                        <a href="#" aria-controls="basicExample" data-dt-idx="8" tabindex="0" class="page-link">Tiếp theo</a></li></ul></div></div></div></div>
+      </div></div><div class="row">
+    <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info" role="status" aria-live="polite">
+            Hiển thị {{ $all_user->firstItem() }} đến {{ $all_user->lastItem() }} 
+            trong tổng số {{ $all_user->total() }} người dùng
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers">
+            {{ $all_user->links('pagination::bootstrap-4') }}
+        </div>
+    </div>
+</div>
     </div>
 </div>
 @endsection 

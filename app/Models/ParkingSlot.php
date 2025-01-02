@@ -29,6 +29,6 @@ class ParkingSlot extends Model
     // Quan hệ với model ParkingLot (Many-to-One)
     public function parkingLot()
     {
-        return $this->belongsTo(ParkingLot::class, 'parkingid', 'parkingid');
+        return $this->belongsTo(ParkingLot::class);
     }
 }

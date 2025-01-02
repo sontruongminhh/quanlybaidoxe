@@ -17,16 +17,6 @@
 		<!-- Common Css Files -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<script>
-			function validateForm() {
-				var email = document.forms["resetForm"]["Email"].value;
-				if (email == "") {
-					alert("Vui lòng nhập đầy đủ thông tin.");
-					return false;
-				}
-			}
-		</script>
-
 	</head>
 
 	<body class="authentication">
@@ -34,7 +24,7 @@
 		<!-- Container start -->
 		<div class="container">
 
-			<form action="" method="post">
+			<form action="{{ route('register.post') }}" method="post">
 			@csrf
 				<div class="row justify-content-md-center">
 					<div class="col-xl-5 col-md-6 col-sm-12">
@@ -44,21 +34,46 @@
 									Đăng ký
 								</a>
 								<h5>Xin chào<br />Hãy tạo cho mình một tài khoản.</h5>
+								
 								<div class="form-group">
-									<input type="text" name="Email" class="form-control" placeholder="Email Address" />
+									<input type="text" name="name" class="form-control" placeholder="Họ và tên" value="{{ old('name') }}" />
+									<div style="color:red">{{ $errors->first('name') }}</div>
 								</div>
+
+								<div class="form-group">
+									<input type="text" name="Email" class="form-control" placeholder="Email" value="{{ old('Email') }}" />
+									<div style="color:red">{{ $errors->first('Email') }}</div>
+								</div>
+
+								<div class="form-group">
+									<input type="text" name="phone" class="form-control" placeholder="Số điện thoại" value="{{ old('phone') }}" />
+									<div style="color:red">{{ $errors->first('phone') }}</div>
+								</div>
+
+								<div class="form-group">
+									<input type="text" name="address" class="form-control" placeholder="Địa chỉ" value="{{ old('address') }}" />
+									<div style="color:red">{{ $errors->first('address') }}</div>
+								</div>
+
 								<div class="form-group">
 									<div class="input-group">
-										<input type="password" name="Password" value="{{old('Email')}}" class="form-control" placeholder="Password" />
-										<div style="color:red">{{ $errors->first('Password') }}</div>				
+										<input type="password" name="Password" class="form-control" placeholder="Mật khẩu" />
 									</div>
+									<div style="color:red">{{ $errors->first('Password') }}</div>
 								</div>
+
 								<div class="form-group">
 									<div class="input-group">
-										<input type="password" name="ConfirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" />
-										<div style="color:red">{{ $errors->first('ConfirmPassword') }}</div>				
+										<input type="password" name="Password_confirmation" class="form-control" placeholder="Nhập lại mật khẩu" />
 									</div>
 								</div>
+
+								@if(session('success'))
+									<div class="alert alert-success">
+										{{ session('success') }}
+									</div>
+								@endif
+
 								<div class="actions">	
 									<button type="submit" class="btn btn-primary">Đăng ký</button>
 								</div>
@@ -79,3 +94,4 @@
 	</body>
 
 </html>
+
